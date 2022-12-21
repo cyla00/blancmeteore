@@ -1,0 +1,9 @@
+{
+    "status": [
+        "toContact",
+        "inProgress",
+        "sentProposition",
+        "signedProposition",
+        "completed"
+    ]
+}

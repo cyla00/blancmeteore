@@ -1,0 +1,11 @@
+{
+    "collections" : [
+        "users",
+        "addresses",
+        "subscriptions",
+        "id_graphic",
+        "sites_vitrine",
+        "sites_ecomm",
+        "sites_mesure"
+    ]
+}
