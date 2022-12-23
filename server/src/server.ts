@@ -27,6 +27,8 @@ import { createIdGrpah } from './products/idGraph/createIdGraph.ts'
 import { deleteIdGrpah } from './products/idGraph/deleteIdGraph.ts'
 
 import { createSubscription } from './products/subscriptions/createSubscription.ts'
+import { deleteSubscription } from './products/subscriptions/deleteSubscription.ts'
+import { upgradeSubscription } from './products/subscriptions/upgradeSubscription.ts'
 
 import { createSiteVitrine } from './products/sitesVitrine/createSiteVitr.ts'
 import { deleteSiteVitrine } from './products/sitesVitrine/deleteSiteVitrine.ts'
@@ -82,6 +84,8 @@ app.use(createIdGrpah.routes(), createIdGrpah.allowedMethods()) // created a gra
 app.use(deleteIdGrpah.routes(), deleteIdGrpah.allowedMethods()) // deletes the graph order and removes order_id from user
 
 app.use(createSubscription.routes(), createSubscription.allowedMethods()) // created subscription order
+app.use(deleteSubscription.routes(), deleteSubscription.allowedMethods()) // delete subscription
+app.use(upgradeSubscription.routes(), upgradeSubscription.allowedMethods()) // upgrade subscription
 
 app.use(createSiteVitrine.routes(), createSiteVitrine.allowedMethods()) // creates site vitrine order
 app.use(deleteSiteVitrine.routes(), deleteSiteVitrine.allowedMethods()) // deletes site vitrine order and removes order_id from user

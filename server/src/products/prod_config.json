@@ -5,5 +5,11 @@
         "sentProposition",
         "signedProposition",
         "completed"
+    ],
+    "subscriptions":[
+        "lancement",
+        "presence",
+        "decollage",
+        "audit"
     ]
 }
