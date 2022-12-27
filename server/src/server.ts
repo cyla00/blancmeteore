@@ -38,6 +38,13 @@ import { deleteSiteEcomm } from './products/sitesEcommerce/deleteSiteEcom.ts'
 
 import { createSiteMesure } from './products/sitesMesure/createSiteMesure.ts'
 import { deleteSiteMesure } from './products/sitesMesure/deleteSitesMesure.ts'
+
+//commercial routes
+import { orderCompleted } from './commercial/orderCompleted.ts'
+import { fetchOrders } from './commercial/fetchOrders.ts'
+import { propositionSent } from './commercial/propositionSent.ts'
+import { propositionSigned } from './commercial/propositionSigned.ts'
+import { orderInProgress } from './commercial/orderInProgress.ts'
  
 
 const app = new Application()
@@ -95,6 +102,13 @@ app.use(deleteSiteEcomm.routes(), deleteSiteEcomm.allowedMethods()) // deletes e
 
 app.use(createSiteMesure.routes(), createSiteMesure.allowedMethods()) // creates sites mesure order
 app.use(deleteSiteMesure.routes(), deleteSiteMesure.allowedMethods()) // deletes site mesure order and removes order_id from user
+
+//commercial routes
+app.use(orderCompleted.routes(), orderCompleted.allowedMethods()) // set order status completed
+app.use(fetchOrders.routes(), fetchOrders.allowedMethods()) // fetches all order
+app.use(propositionSent.routes(), propositionSent.allowedMethods()) // set order status "proposition sent"
+app.use(propositionSigned.routes(), propositionSigned.allowedMethods()) // set order status "proposition signed"
+app.use(orderInProgress.routes(), orderInProgress.allowedMethods()) // set order status "in progress"
 
 
 if(config().STATUS === 'production'){
