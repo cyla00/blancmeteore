@@ -26,83 +26,95 @@ fetchOrders.post('/api/get-orders', async (ctx) => {
 
     const all:any = []
 
-    await idGraph.find({}).forEach(async (product) => {
-        await all.unshift({
-            type: 'identite graphique',
-            id: product.id,
-            clientId: product.customerId,
-            createdAt: product.createdAt,
-            newLogo: product.newLogo,
-            newCarteVisite: product.newCarteVisite,
-            newFlyer: product.newFlyer,
-            newDeplyant: product.newDeplyant,
-            newDeclinaisonResaux: product.newDeclinaisonResaux,
-            newIdGraphComplete: product.newIdGraphComplete,
-            newMoreInfo: product.newMoreInfo,
-            questDejaIdGraph: product.questDejaIdGraph,
-            questSecteurActivite: product.questSecteurActivite,
-            questObjectiveCreation: product.questObjectiveCreation,
-            status: product.status,
+    try{
+        await idGraph.find({}).forEach(async (product) => {
+            await all.unshift({
+                type: 'identite graphique',
+                id: product.id,
+                clientId: product.customerId,
+                createdAt: product.createdAt,
+                newLogo: product.newLogo,
+                newCarteVisite: product.newCarteVisite,
+                newFlyer: product.newFlyer,
+                newDeplyant: product.newDeplyant,
+                newDeclinaisonResaux: product.newDeclinaisonResaux,
+                newIdGraphComplete: product.newIdGraphComplete,
+                newMoreInfo: product.newMoreInfo,
+                questDejaIdGraph: product.questDejaIdGraph,
+                questSecteurActivite: product.questSecteurActivite,
+                questObjectiveCreation: product.questObjectiveCreation,
+                status: product.status,
+            })
         })
-    })
-    await sitesEcom.find({}).forEach(async (product) => {
-        await all.unshift({
-            type: 'site e-commerce',
-            id: product.id,
-            clientId: product.customerId,
-            createdAt: product.createdAt,
-            oldSiteUrl: product.oldSiteUrl,
-            newSiteUrl: product.newSiteUrl,
-            questDejaSite: product.questDejaSite,
-            questSecteurActivite: product.questSecteurActivite,
-            questObjectiveSite: product.questObjectiveSite,
-            questPossedezIdGraph: product.questPossedezIdGraph,
-            questNumCategories: product.questNumCategories,
-            questNumProducts: product.questNumProducts,
-            newMoreInfo: product.newMoreInfo,
-            status: product.status,
+        await sitesEcom.find({}).forEach(async (product) => {
+            await all.unshift({
+                type: 'site e-commerce',
+                id: product.id,
+                clientId: product.customerId,
+                createdAt: product.createdAt,
+                oldSiteUrl: product.oldSiteUrl,
+                newSiteUrl: product.newSiteUrl,
+                questDejaSite: product.questDejaSite,
+                questSecteurActivite: product.questSecteurActivite,
+                questObjectiveSite: product.questObjectiveSite,
+                questPossedezIdGraph: product.questPossedezIdGraph,
+                questNumCategories: product.questNumCategories,
+                questNumProducts: product.questNumProducts,
+                newMoreInfo: product.newMoreInfo,
+                status: product.status,
+            })
         })
-    })
-    await sitesVitr.find({}).forEach(async (product) => {
-        await all.unshift({
-            type: 'site vitrine',
-            id: product.id,
-            clientId: product.customerId,
-            createdAt: product.createdAt,
-            oldSiteUrl: product.oldSiteUrl,
-            newSiteUrl: product.newSiteUrl,
-            questDejaSite: product.questDejaSite,
-            questSecteurActivite: product.questSecteurActivite,
-            questObjectiveSite: product.questObjectiveSite,
-            questPossedezIdGraph: product.questPossedezIdGraph,
-            questNumPages: product.questNumPages,
-            newMoreInfo: product.newMoreInfo,
-            status: product.status,
+        await sitesVitr.find({}).forEach(async (product) => {
+            await all.unshift({
+                type: 'site vitrine',
+                id: product.id,
+                clientId: product.customerId,
+                createdAt: product.createdAt,
+                oldSiteUrl: product.oldSiteUrl,
+                newSiteUrl: product.newSiteUrl,
+                questDejaSite: product.questDejaSite,
+                questSecteurActivite: product.questSecteurActivite,
+                questObjectiveSite: product.questObjectiveSite,
+                questPossedezIdGraph: product.questPossedezIdGraph,
+                questNumPages: product.questNumPages,
+                newMoreInfo: product.newMoreInfo,
+                status: product.status,
+            })
         })
-    })
-    await sitesMesure.find({}).forEach(async (product) => {
-        await all.unshift({
-            type: 'site sur mesure',
-            id: product.id,
-            clientId: product.customerId,
-            createdAt: product.createdAt,
-            newSiteUrl: product.newSiteUrl,
-            questDejaSite: product.questDejaSite,
-            questSecteurActivite: product.questSecteurActivite,
-            questObjectiveSite: product.questObjectiveSite,
-            questNumUsers: product.questNumUsers,
-            newMoreInfo: product.newMoreInfo,
-            status: product.status,
+        await sitesMesure.find({}).forEach(async (product) => {
+            await all.unshift({
+                type: 'site sur mesure',
+                id: product.id,
+                clientId: product.customerId,
+                createdAt: product.createdAt,
+                newSiteUrl: product.newSiteUrl,
+                questDejaSite: product.questDejaSite,
+                questSecteurActivite: product.questSecteurActivite,
+                questObjectiveSite: product.questObjectiveSite,
+                questNumUsers: product.questNumUsers,
+                newMoreInfo: product.newMoreInfo,
+                status: product.status,
+            })
         })
-    })
 
-    const toContact:Array<object> = await all.filter((element:any) => element.status === prod_json.status[0]) //prod_json.status[0]
-    const inProgress:Array<object> = await all.filter((element:any) => element.status === prod_json.status[1]) //prod_json.status[1]
-    const sentProposition:Array<object> = await all.filter((element:any) => element.status === prod_json.status[2]) //prod_json.status[2]
-    const signedProposition:Array<object> = await all.filter((element:any) => element.status === prod_json.status[3]) //prod_json.status[3]
-    const completed:Array<object> = await all.filter((element:any) => element.status === prod_json.status[4]) //prod_json.status[4]
+        const toContact:Array<object> = await all.filter((element:any) => element.status === prod_json.status[0]) //prod_json.status[0]
+        const inProgress:Array<object> = await all.filter((element:any) => element.status === prod_json.status[1]) //prod_json.status[1]
+        const sentProposition:Array<object> = await all.filter((element:any) => element.status === prod_json.status[2]) //prod_json.status[2]
+        const signedProposition:Array<object> = await all.filter((element:any) => element.status === prod_json.status[3]) //prod_json.status[3]
+        const completed:Array<object> = await all.filter((element:any) => element.status === prod_json.status[4]) //prod_json.status[4]
 
-    console.log(inProgress);
-    
-
+        ctx.response.status = Status.OK
+        return ctx.response.body = {
+            toContact: toContact,
+            inProgress: inProgress,
+            sentProposition: sentProposition,
+            signedProposition: signedProposition,
+            completed: completed,
+        }
+    }catch(_e){
+        ctx.response.status = Status.InternalServerError
+        return ctx.response.body = {
+            ErrMsg: 'Erreur'
+        }
+    }
 })
