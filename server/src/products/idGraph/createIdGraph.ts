@@ -37,6 +37,27 @@ createIdGrpah.post('/api/create-id-graphic', async (ctx) => {
             }
         }
 
+        if(bodyVal.fields.newLogo === 'true') bodyVal.fields.newLogo = true
+        if(bodyVal.fields.newLogo === 'false') bodyVal.fields.newLogo = false
+
+        if(bodyVal.fields.newCarteVisite === 'true') bodyVal.fields.newCarteVisite = true
+        if(bodyVal.fields.newCarteVisite === 'false') bodyVal.fields.newCarteVisite = false
+
+        if(bodyVal.fields.newFlyer === 'true') bodyVal.fields.newFlyer = true
+        if(bodyVal.fields.newFlyer === 'false') bodyVal.fields.newFlyer = false
+
+        if(bodyVal.fields.newDeplyant === 'true') bodyVal.fields.newDeplyant = true
+        if(bodyVal.fields.newDeplyant === 'false') bodyVal.fields.newDeplyant = false
+
+        if(bodyVal.fields.newDeclinaisonResaux === 'true') bodyVal.fields.newDeclinaisonResaux = true
+        if(bodyVal.fields.newDeclinaisonResaux === 'false') bodyVal.fields.newDeclinaisonResaux = false
+
+        if(bodyVal.fields.newIdGraphComplete === 'true') bodyVal.fields.newIdGraphComplete = true
+        if(bodyVal.fields.newIdGraphComplete === 'false') bodyVal.fields.newIdGraphComplete = false
+
+        if(bodyVal.fields.questDejaIdGraph === 'true') bodyVal.fields.questDejaIdGraph = true
+        if(bodyVal.fields.questDejaIdGraph === 'false') bodyVal.fields.questDejaIdGraph = false
+
         const prod_id:any = crypto.randomUUID()
         
         await idGraph.insertOne({

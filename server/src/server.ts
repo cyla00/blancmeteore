@@ -112,7 +112,19 @@ app.use(orderInProgress.routes(), orderInProgress.allowedMethods()) // set order
 
 
 if(config().STATUS === 'production'){
-    // serve /dist/index.html static file
+    // const root = './media'
+    // app.use(async (ctx, next) => {
+    //     const path = ctx.request.url.pathname
+    //     try{
+    //         await send(ctx, path, {
+    //             root: root,
+    //         })
+    //         return next()
+    //     }catch(e){
+    //         ctx.response.status = Status.BadGateway
+    //         return next()
+    //     }
+    // })
 }
 
 console.log(`http://${os.hostname()}:${config().SERVER_PORT}`)
