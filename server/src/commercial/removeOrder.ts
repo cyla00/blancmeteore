@@ -7,7 +7,7 @@ import { jwtDecode } from '../auth/jwtDecode.ts'
 import prod_json from '../products/prod_config.json' assert { type: "json" }
     
 export const propositionSigned = new Router()
-propositionSigned.post('/api/proposition-signed', async (ctx) => {
+propositionSigned.post('/api/delete-order', async (ctx) => {
     
     const token = ctx.request.headers.get('Authorization')
     const date = new Date()
@@ -16,5 +16,4 @@ propositionSigned.post('/api/proposition-signed', async (ctx) => {
     
     const idGraph = db.collection<IdGraphicOrderSchema>("id_graphic")
     const users = db.collection<UserSchema>("users")
-
 })
