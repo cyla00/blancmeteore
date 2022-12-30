@@ -3,7 +3,10 @@
 import { Application, config, send, Status } from './deps.ts'
 import { jwtMiddleware } from './auth/jwt.ts'
 import os from "https://deno.land/x/dos@v0.11.0/mod.ts"
+import staticFiles from "https://deno.land/x/static_files@1.1.6/mod.ts"
 import { oakCors } from './deps.ts'
+
+import { vuejsRouter } from './vuejsRouter.ts'
 
 // routers
 import { login } from './users/login.ts' // login
@@ -111,20 +114,9 @@ app.use(propositionSigned.routes(), propositionSigned.allowedMethods()) // set o
 app.use(orderInProgress.routes(), orderInProgress.allowedMethods()) // set order status "in progress"
 
 
-if(config().STATUS === 'production'){
-    // const root = './media'
-    // app.use(async (ctx, next) => {
-    //     const path = ctx.request.url.pathname
-    //     try{
-    //         await send(ctx, path, {
-    //             root: root,
-    //         })
-    //         return next()
-    //     }catch(e){
-    //         ctx.response.status = Status.BadGateway
-    //         return next()
-    //     }
-    // })
+if(config().STATUS === 'production'){   
+    app.use(staticFiles(`${Deno.cwd()}/dist`))
+    app.use(vuejsRouter.routes(), vuejsRouter.allowedMethods())
 }
 
 console.log(`http://${os.hostname()}:${config().SERVER_PORT}`)
