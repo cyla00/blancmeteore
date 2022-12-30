@@ -1,5 +1,7 @@
 // deno run --allow-net --allow-env --allow-read --watch ./src/database/seed.ts FOR DATABASE SEED
 // deno run --allow-net --allow-read --allow-write --allow-sys --watch ./src/server.ts TO RUN SERVER
+// deno compile --allow-net --allow-read --allow-write --allow-sys ./src/server.ts COMPILE TO EXECUTABLE
+
 import { Application, config, send, Status } from './deps.ts'
 import { jwtMiddleware } from './auth/jwt.ts'
 import os from "https://deno.land/x/dos@v0.11.0/mod.ts"
