@@ -51,6 +51,9 @@ import { propositionSent } from './commercial/propositionSent.ts'
 import { propositionSigned } from './commercial/propositionSigned.ts'
 import { orderInProgress } from './commercial/orderInProgress.ts'
 import { fetchUser } from './commercial/fetchUsers.ts'
+
+//creator routes
+import { fetchCreaOrders } from './creator/fetchOrders.ts'
  
 
 const app = new Application()
@@ -116,6 +119,9 @@ app.use(propositionSent.routes(), propositionSent.allowedMethods()) // set order
 app.use(propositionSigned.routes(), propositionSigned.allowedMethods()) // set order status "proposition signed"
 app.use(orderInProgress.routes(), orderInProgress.allowedMethods()) // set order status "in progress"
 app.use(fetchUser.routes(), fetchUser.allowedMethods()) // gets user info
+
+//creator routes
+app.use(fetchCreaOrders.routes(), fetchCreaOrders.allowedMethods()) // gets all orders with status "signed"
 
 
 if(config().STATUS === 'production'){   

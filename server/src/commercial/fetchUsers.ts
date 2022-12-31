@@ -15,7 +15,7 @@ fetchUser.post('/api/get-user', async (ctx) => {
     const bodyVal = await body.value
     const users = db.collection<UserSchema>("users")
 
-    if(jwtDecode(token).role !== 'commercial'){
+    if(jwtDecode(token).role !== 'commercial' && jwtDecode(token).role !== 'creator'){
         ctx.response.status = Status.BadRequest
         return ctx.response.body = {
             ErrMsg: 'Erreur'
