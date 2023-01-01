@@ -54,6 +54,7 @@ import { fetchUser } from './commercial/fetchUsers.ts'
 
 //creator routes
 import { fetchCreaOrders } from './creator/fetchOrders.ts'
+import { sendMedia } from './creator/SendMedia.ts'
  
 
 const app = new Application()
@@ -64,7 +65,7 @@ app.use(async (ctx, next) => {
     const path = ctx.request.url.pathname
     try{
         await send(ctx, path, {
-            root: root,
+            root: '',
         })
         return next()
     }catch(e){
@@ -72,6 +73,7 @@ app.use(async (ctx, next) => {
         return next()
     }
 })
+
 
 app.use(oakCors()) // enables cors
 adminCheck() // admin db check + creation if not exist, else skip
@@ -122,6 +124,9 @@ app.use(fetchUser.routes(), fetchUser.allowedMethods()) // gets user info
 
 //creator routes
 app.use(fetchCreaOrders.routes(), fetchCreaOrders.allowedMethods()) // gets all orders with status "signed"
+app.use(sendMedia.routes(), sendMedia.allowedMethods()) // sends zip to user dir
+
+
 
 
 if(config().STATUS === 'production'){   
