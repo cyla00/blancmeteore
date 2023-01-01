@@ -55,9 +55,11 @@ import { fetchUser } from './commercial/fetchUsers.ts'
 //creator routes
 import { fetchCreaOrders } from './creator/fetchOrders.ts'
 import { sendMedia } from './creator/SendMedia.ts'
+import { downloadCreations } from './users/downloadCreations.ts'
  
 
 const app = new Application()
+app.use(oakCors()) // enables cors
 
 //static files
 const root = './media'
@@ -65,7 +67,7 @@ app.use(async (ctx, next) => {
     const path = ctx.request.url.pathname
     try{
         await send(ctx, path, {
-            root: '',
+            root: '/',
         })
         return next()
     }catch(e){
@@ -125,7 +127,7 @@ app.use(fetchUser.routes(), fetchUser.allowedMethods()) // gets user info
 //creator routes
 app.use(fetchCreaOrders.routes(), fetchCreaOrders.allowedMethods()) // gets all orders with status "signed"
 app.use(sendMedia.routes(), sendMedia.allowedMethods()) // sends zip to user dir
-
+app.use(downloadCreations.routes(), downloadCreations.allowedMethods()) //user downloads zip folder
 
 
 
