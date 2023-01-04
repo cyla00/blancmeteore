@@ -1,4 +1,7 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
+import axios from 'axios'
+
+//routes
 import Home from '../views/Home.vue'
 import Accompagnement from '../views/Accompagnement.vue'
 import Graphique from '../views/Graphique.vue'
@@ -13,10 +16,11 @@ import UserPublic from '../views/UserPublic.vue'
 import NotFound from '../views/NotFound.vue'
 import ConditionsVente from '../views/ConditionsVente.vue'
 import PolitiqueConfidentialite from '../views/PolitiqueConfidentialite.vue'
+import ProfileNotFound from '../views/ProfileNotFound.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
-    path: '/:pathMatch(.*)',
+    path: '/:catchAll(.*)',
     name: 'NotFound',
     component: NotFound,
     meta: {
@@ -24,8 +28,16 @@ const routes: Array<RouteRecordRaw> = [
     }
   },
   {
+    path: '/not-found',
+    name: 'ProfileNotFound',
+    component: ProfileNotFound,
+    meta: {
+      private: false
+    }
+  },
+  {
     path: '/',
-    name: 'home',
+    name: 'Home',
     component: Home,
     meta: {
       private: false
@@ -124,14 +136,45 @@ const routes: Array<RouteRecordRaw> = [
     name: 'UserPublic',
     component: UserPublic,
     meta: {
-      private: false
-    }
+      private: false,
+	  type: 'public'
+    },
   },
 ]
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
+})
+
+
+const auth = {
+	headers: {
+		Authorization: `Bearer ${localStorage.getItem('token')}`
+	}
+}
+
+router.beforeEach(async (to:any, from:any, next:any) => {
+
+	if(!to.meta.private && to.meta.type !== 'public') return next()
+
+  	if(to.meta.private){
+    	await axios.post('http://localhost:3000/api/jwt-check', {}, auth).then((res:any) => {
+      		return next()
+    	}).catch((err:any) => {
+      		localStorage.clear()
+      		return next({ name: 'Login' })
+    	})
+  	}
+
+	if(to.meta.type === 'public'){
+    	await axios.post('http://localhost:3000/api/public-profile', {}, {}).then((res:any) => {
+			return next()
+		}).catch((err:any) => {
+			localStorage.clear()
+			return next({ name: 'ProfileNotFound' })
+		})
+  	}
 })
 
 export default router

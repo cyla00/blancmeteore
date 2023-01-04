@@ -58,6 +58,7 @@ registration.post('/api/registration', async (ctx) => {
         lastLogin: ``,
         modifiedAt: ``,
         role: 'user',
+        public: false,
         subscriptionId: '',
         idGraphicOrders: [],
         sitesVitrineOrders: [],

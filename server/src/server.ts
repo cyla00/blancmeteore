@@ -26,6 +26,7 @@ import { avatarAdd } from './users/avatarAdd.ts'
 import { bannerAdd } from './users/bannerAdd.ts'
 import { billingAddrAdd } from './users/billingAddrAdd.ts'
 import { billingAddrDelete } from './users/billingAddrDelete.ts'
+import { publicProfileCheck } from './users/publicProfileCheck.ts'
 
 // product routes
 import { createIdGrpah } from './products/idGraph/createIdGraph.ts'
@@ -84,6 +85,7 @@ adminCheck() // admin db check + creation if not exist, else skip
 // open routes
 app.use(registration.routes(), registration.allowedMethods()) // user role registration
 app.use(login.routes(), login.allowedMethods()) // login
+app.use(publicProfileCheck.routes(), publicProfileCheck.allowedMethods()) // checks if user profile is public
 
 //protected routes by jwt verification middleware + jwt check
 app.use(jwtMiddleware)

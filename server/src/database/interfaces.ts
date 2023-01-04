@@ -16,6 +16,7 @@ export interface UserSchema {
     lastLogin: string, 
     modifiedAt: string,
     role: string,
+    public: boolean,
     subscriptionId: string,
     idGraphicOrders: Array<string>,
     sitesVitrineOrders: Array<string>,
