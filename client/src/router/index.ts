@@ -160,6 +160,7 @@ router.beforeEach(async (to:any, from:any, next:any) => {
 
   	if(to.meta.private){
     	await axios.post('http://localhost:3000/api/jwt-check', {}, auth).then((res:any) => {
+            // register the response token here
       		return next()
     	}).catch((err:any) => {
       		localStorage.clear()
