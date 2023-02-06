@@ -38,7 +38,6 @@ export default defineComponent({
 
             <div class="connection-wrapper">
                 <router-link class="" to="/login">{{$t('header.connection')}}</router-link>
-                <router-link class="" to="/login">{{$t('header.connection')}}</router-link>
             </div>
             
             <div class="lang-wrapper">
