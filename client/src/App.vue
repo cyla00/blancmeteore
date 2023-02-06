@@ -2,12 +2,14 @@
 import { defineComponent } from 'vue'
 import Header from './components/Header.vue'
 import Footer from './components/Footer.vue'
+import Translation from './components/Translation.vue'
 
 export default defineComponent({
   name: 'App',
   components: {
     Header,
-    Footer
+    Footer,
+    Translation,
   }
 })
 </script>
@@ -15,6 +17,7 @@ export default defineComponent({
 
 <template>
   <Header/>
+  <Translation/>
   <router-view/>
   <Footer/>
 </template>
