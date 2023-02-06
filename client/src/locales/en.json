@@ -3,5 +3,13 @@
       "fr": "French",
       "en": "English"
     },
-    "title": "title"
+    "title": "title",
+    "header":{
+        "connection": "connection",
+        "solutions": "solutions",
+        "acc":"digital support",
+        "graph":"design",
+        "sites":"web development",
+        "contact": "contact"
+    }
 }

@@ -3,5 +3,13 @@
       "fr": "Francais",
       "en": "Anglais"
     },
-    "title": "titre"
+    "title": "titre",
+    "header":{
+        "connection": "connection",
+        "solutions": "solutions",
+        "acc":"accompagnement digital",
+        "graph":"graphisme",
+        "sites":"developpement sites",
+        "contact": "contact"
+    }
 }

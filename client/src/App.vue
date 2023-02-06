@@ -2,14 +2,12 @@
 import { defineComponent } from 'vue'
 import Header from './components/Header.vue'
 import Footer from './components/Footer.vue'
-import Translation from './components/Translation.vue'
 
 export default defineComponent({
   name: 'App',
   components: {
     Header,
     Footer,
-    Translation,
   }
 })
 </script>
@@ -17,12 +15,17 @@ export default defineComponent({
 
 <template>
   <Header/>
-  <Translation/>
   <router-view/>
   <Footer/>
 </template>
 
 <style>
+body{
+    margin: 0;
+    padding: 0;
+    background: gray;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
