@@ -1,0 +1,18 @@
+{
+    "locale": {
+      "en": "Anglais",
+      "fr": "Francais"
+    },
+    "header": {
+        "acc": "Accompagnement Digital",
+        "graph": "Graphisme",
+        "sites": "Developpement Sites",
+        "connection": "Connection",
+        "dashboard": "Profil"
+    },
+    "home": {
+        "title": "blanc meteore",
+        "title-p":"La communication accessible à tous", 
+        "sub-title":"agence de communication innovante"
+    }
+  }

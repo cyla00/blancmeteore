@@ -1,31 +1,31 @@
-import i18n from "@/locales"
+import i18n from "@/i18n"
 import { nextTick } from "vue"
 
 const Trans = {
   get defaultLocale() {
-    return 'fr'
+    return import.meta.env.VITE_DEFAULT_LOCALE
   },
 
   get supportedLocales() {
-    return ['fr', 'eng']
+    return import.meta.env.VITE_SUPPORTED_LOCALES.split(",")
   },
 
   get currentLocale() {
     return i18n.global.locale.value
   },
 
-  set currentLocale(newLocale:any) {
+  set currentLocale(newLocale) {
     i18n.global.locale.value = newLocale
   },
 
-  async switchLanguage(newLocale:any) {
+  async switchLanguage(newLocale) {
     await Trans.loadLocaleMessages(newLocale)
     Trans.currentLocale = newLocale
-    // document.querySelector("html").setAttribute("lang", newLocale)
+    document.querySelector("html").setAttribute("lang", newLocale)
     localStorage.setItem("user-locale", newLocale)
   },
 
-  async loadLocaleMessages(locale:any) {
+  async loadLocaleMessages(locale) {
     if(!i18n.global.availableLocales.includes(locale)) {
       const messages = await import(`@/i18n/locales/${locale}.json`)
       i18n.global.setLocaleMessage(locale, messages.default)
@@ -34,13 +34,13 @@ const Trans = {
     return nextTick()
   },
 
-  isLocaleSupported(locale:any) {
+  isLocaleSupported(locale) {
     return Trans.supportedLocales.includes(locale)
   },
 
   getUserLocale() {
     const locale = window.navigator.language ||
-      window.navigator.language ||
+      window.navigator.userLanguage ||
       Trans.defaultLocale
 
     return {
@@ -78,7 +78,7 @@ const Trans = {
     return Trans.defaultLocale
   },
 
-  async routeMiddleware(to:any, _from:any, next:any) {
+  async routeMiddleware(to, _from, next) {
     const paramLocale = to.params.locale
 
     if(!Trans.isLocaleSupported(paramLocale)) {
@@ -90,7 +90,7 @@ const Trans = {
     return next()
   },
 
-  i18nRoute(to:any) {
+  i18nRoute(to) {
     return {
       ...to,
       params: {

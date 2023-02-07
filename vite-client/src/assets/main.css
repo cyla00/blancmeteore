@@ -1,10 +1,21 @@
+@font-face {
+    font-family: "Avenir";
+    src: url("./Av.otf");
+}
+@font-face {
+    font-family: "AvenirBold";
+    src: url("./AvBold.otf");
+}
+
 body{
     margin: 0;
     padding: 0;
+
+    background-color: #EFEDF2;
 }
 
 #app {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
+    font-family: Avenir, AvenirBold;
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
@@ -12,3 +23,21 @@ body{
     -webkit-text-size-adjust: 100%;
 }
 
+::-webkit-scrollbar {
+    width: 10px;
+}
+  
+  /* Track */
+::-webkit-scrollbar-track {
+    background: #EFEDF2;
+}
+  
+  /* Handle */
+::-webkit-scrollbar-thumb {
+    background: #86CBC9;
+}
+  
+  /* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #155277;
+}

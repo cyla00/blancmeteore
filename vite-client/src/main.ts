@@ -1,12 +1,11 @@
-import { createApp } from 'vue'
+import { createApp } from 'vue/dist/vue.esm-bundler'
 import App from './App.vue'
 import router from './router'
 import './assets/main.css'
-import i18n from './locales'
+import i18n from './i18n'
 
-const app = createApp(App)
-
-app.use(i18n)
-app.use(router)
-app.mount('#app')
+createApp(App).
+  use(router).
+  use(i18n).
+  mount('#app')
 
