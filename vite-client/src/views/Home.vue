@@ -1,11 +1,13 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import Sec2 from '../components/home/sec2.vue'
+import Sec3 from '../components/home/Sec3.vue'
 
 export default defineComponent({
     name: 'Home',
     components: {
         Sec2,
+        Sec3,
     }
 })
 </script>
@@ -16,6 +18,10 @@ export default defineComponent({
             <svg viewBox="0 0 500 500" preserveAspectRatio="xMinYMin meet">
                 <path d="M0,150 C150,200 400,0 800,150 L500,00 L0,0 Z" style="stroke: none; fill:#EFEDF2;"></path>
             </svg>
+
+
+
+
             <div class="home-wrapper">
                 <div class="into-image-wrapper">
                     <img class="intro-img" src="@/assets/ph.png" alt="">
@@ -29,13 +35,25 @@ export default defineComponent({
             </div>
         </div>
         <Sec2/>
+        <Sec3/>
     </section>
 </template>
 
 <style scoped>
+
+
+
+
+
+
+
+
+
+
+
+
 section{
     position: relative;
-    background: #062C43;
 }
 .home-wrapper{
     height: 80vh;
@@ -88,5 +106,6 @@ svg {
   width: 100%;
   vertical-align: middle;
   overflow: hidden;
+  background: #062C43;
 }
 </style>

@@ -13,6 +13,17 @@
     "home": {
         "title": "blanc meteore",
         "title-p":"the communication accessible to anyone",
-        "sub-title":"innovative communication agency"
+        "sub-title":"innovative communication agency",
+        "sec2": {
+            "title": "section title en",
+            "sub-title": "sub title section en",
+            "card-descr-acc":"description de la categorie accompagnement digital rapide english",
+            "card-descr-grpah":"description de la categorie graphisme digital rapide english",
+            "card-descr-sites":"description de la categorie sites digital rapide english",
+            "card-btn":"know more"
+        },
+        "sec3": {
+
+        }   
     }
   }

@@ -33,7 +33,7 @@ export default defineComponent({
         },
         updateScroll(){
             const scroll = window.scrollY
-            if(scroll > 55){
+            if(scroll > 60){
                 this.scrollPosition = true
                 return
             }
@@ -87,7 +87,7 @@ header{
     background: #ffffff;
     position: sticky;
     border-radius: 100px;
-    margin: 20px 40px;
+    margin: 1% 2%;
     padding: 10px 40px;
     transition: 0.1s ease all;
     top: 0;
