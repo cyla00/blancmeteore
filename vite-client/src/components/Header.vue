@@ -53,7 +53,7 @@ export default defineComponent({
     <header :class="{'scrolled-desktop-nav': scrollPosition, 'mobile-header': mobile}">
         <nav class="desktop-nav" v-if="!mobile">
             <div class="logo-wrapper">
-                <router-link to="/"><img class="logo" src="https://via.placeholder.com/150x40" alt="company logo"></router-link>
+                <router-link to="/"><img class="logo" src="@/assets/logo.png" alt="company logo"></router-link>
             </div>
 
             <div class="links-wrapper">
@@ -84,7 +84,7 @@ export default defineComponent({
 
 <style scoped>
 header{
-    background: #ffffff;
+    background: rgba(255, 255, 255, 0.8);
     position: sticky;
     border-radius: 100px;
     margin: 1% 2%;
@@ -93,10 +93,12 @@ header{
     top: 0;
     z-index: 99;
     font-size: 15px;
-    font-family: AvenirBold;
+    font-family: Inter;
+    font-weight: bold;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 .scrolled-desktop-nav{
+    background: #ffffff;
     transition: 0.1s ease all;
     margin: 0;
     border-radius: 0;
@@ -112,10 +114,11 @@ header{
 .logo{
     transition: 0.2s ease all;
     vertical-align: middle;
+    width: 120px;
 }
 .logo:hover{
     transition: 0.2s ease all;
-    opacity: 80%;
+    opacity: 50%;
 }
 .links-wrapper{
     margin: auto;
@@ -139,7 +142,7 @@ a{
 }
 a:hover{
     transition: 0.2s ease all;
-    opacity: 80%;
+    opacity: 50%;
 }
 i{
     vertical-align: middle;

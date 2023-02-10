@@ -15,11 +15,30 @@ export default defineComponent({
                     <h3>{{$t('home.sec3.sub-title')}}</h3>
                 </div>
                 <div class="partners-wrapper">
-                    <img class="partner-logo" src="@/assets/meteorite.png" alt="">
-                    <img class="partner-logo" src="@/assets/meteorite.png" alt="">
-                    <img class="partner-logo" src="@/assets/meteorite.png" alt="">
-                    <img class="partner-logo" src="@/assets/meteorite.png" alt="">
-                    <img class="partner-logo" src="@/assets/meteorite.png" alt="">
+
+                    <div class="wrapper">
+                        <img class="partner-logo" src="@/assets/logo1.png" alt="">
+                        <img class="partner-logo" src="@/assets/logo2.png" alt="">
+                        <img class="partner-logo" src="@/assets/logo3.png" alt="">
+                        <img class="partner-logo" src="@/assets/logo4.png" alt="">
+                        <img class="partner-logo" src="@/assets/logo5.png" alt="">
+                    </div>
+
+                    <div class="wrapper">
+                        <img class="partner-logo" src="@/assets/logo6.png" alt="">
+                        <img class="partner-logo" src="@/assets/logo7.png" alt="">
+                        <img class="partner-logo" src="@/assets/logo8.png" alt="">
+                        <img class="partner-logo" src="@/assets/logo9.png" alt="">
+                        <img class="partner-logo" src="@/assets/logo10.png" alt="">
+                    </div>
+
+                    <div class="wrapper">
+                        <img class="partner-logo" src="@/assets/logo11.png" alt="">
+                        <img class="partner-logo" src="@/assets/logo12.png" alt="">
+                        <img class="partner-logo" src="@/assets/logo13.png" alt="">
+                        <img class="partner-logo" src="@/assets/logo14.png" alt="">
+                        <img class="partner-logo" src="@/assets/logo15.png" alt="">
+                    </div>
                 </div>
             </div>
         </div>
@@ -30,26 +49,36 @@ export default defineComponent({
 
 
 section{
+    height: 100vh;
     /* padding-block: 100px; */
     position: relative;
-    background: #EFEDF2;
+    display: flex;
+    justify-content: center;
+    background: #EFEDF2 !important;
 }
+
+.content-wrapper{
+    
+}
+
 .title-wrapper{
-    background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(10px);
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-    margin: 2%;
-    border-radius: 20px;
-    padding: 20px;
     text-align: center;
 }
+
 .partners-wrapper{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    width: 100vw;
+    grid-template-rows: 1fr 1fr 1fr;
 }
 .partner-logo{
-    background: #EFEDF2;
     margin: auto;
-    width: 50px;
+    vertical-align: middle;
+    width: 90px;
+}
+.wrapper{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    width: 100vw;
+    margin: 20px auto;
 }
 </style>

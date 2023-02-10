@@ -15,13 +15,6 @@ export default defineComponent({
 <template>
     <section>
         <div class="container">
-            <svg viewBox="0 0 500 500" preserveAspectRatio="xMinYMin meet">
-                <path d="M0,150 C150,200 400,0 800,150 L500,00 L0,0 Z" style="stroke: none; fill:#EFEDF2;"></path>
-            </svg>
-
-
-
-
             <div class="home-wrapper">
                 <div class="into-image-wrapper">
                     <img class="intro-img" src="@/assets/ph.png" alt="">
@@ -40,16 +33,6 @@ export default defineComponent({
 </template>
 
 <style scoped>
-
-
-
-
-
-
-
-
-
-
 
 
 section{
@@ -74,7 +57,6 @@ section{
 }
 .intro-text-wrapper{
     margin: auto;
-    font-family: AvenirBold;
 }
 .title{
     font-size: 62px;
@@ -93,19 +75,5 @@ section{
     margin: 0; 
     text-transform: capitalize;
     color: #062C43;    
-}
-svg {
-  display: inline-block;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-.container {
-  display: inline-block;
-  position: relative;
-  width: 100%;
-  vertical-align: middle;
-  overflow: hidden;
-  background: #062C43;
 }
 </style>

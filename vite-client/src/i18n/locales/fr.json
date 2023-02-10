@@ -15,7 +15,7 @@
         "title-p":"La communication accessible à tous", 
         "sub-title":"agence de communication innovante",
         "sec2": {
-            "title": "section titre fr",
+            "title": "Nos solutions",
             "sub-title": "sub titre fr",
             "card-descr-acc":"description de la categorie accompagnement digital rapide english",
             "card-descr-grpah":"description de la categorie graphisme digital rapide english",
@@ -23,7 +23,7 @@
             "card-btn":"decouvrir"
         },
         "sec3": {
-            "title": "section3 titre fr",
+            "title": "nous Innovons ensemble",
             "sub-title": "sub3 titre fr"
         }
     }
