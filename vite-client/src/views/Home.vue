@@ -2,12 +2,14 @@
 import { defineComponent } from 'vue'
 import Sec2 from '../components/home/sec2.vue'
 import Sec3 from '../components/home/Sec3.vue'
+import Sec4 from '../components/home/Sec4.vue'
 
 export default defineComponent({
     name: 'Home',
     components: {
         Sec2,
         Sec3,
+        Sec4,
     }
 })
 </script>
@@ -29,6 +31,7 @@ export default defineComponent({
         </div>
         <Sec2/>
         <Sec3/>
+        <Sec4/>
     </section>
 </template>
 
@@ -42,7 +45,7 @@ section{
     height: 80vh;
     background: rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(10px);
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
     margin: 0px 2% 2% 2%;
     border-radius: 20px;
     padding: 20px;
@@ -69,6 +72,7 @@ section{
     margin: 0;
     text-transform: capitalize;
     color: #7649FE;
+    font-weight: 600;
 }
 .sub-title{
     font-size: 40px;

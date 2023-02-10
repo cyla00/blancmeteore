@@ -43,18 +43,18 @@ section{
     background: none;
     color: #ffffff;
     text-align: center;
-    display: block;
-    justify-content: center;
 }
 .main-title{
-    font-size: 62px;
+    font-size: 40px;
     text-transform: uppercase;
     margin-block: 0;
 }
 .main-sub-title{
     font-size: 20px;
     margin-top: 0;
-    text-transform: uppercase;
+    margin-bottom: 50px;
+    text-transform: capitalize;
+    font-weight: normal;
 }
 
 .card-wrapper{
@@ -65,7 +65,7 @@ section{
 .card{
     display: grid;
     grid-template-rows: 1fr 1fr 1fr 1fr;
-    margin: 0 50px;
+    margin: 0 2%;
     padding: 10px 20px;
     height: 500px;
     width: 300px;
@@ -78,7 +78,6 @@ section{
 .card-title{
     font-size: 20px;
     font-weight: 500;
-
 }
 .card-text{
     margin: auto;

@@ -11,8 +11,7 @@ export default defineComponent({
         <div class="container">
             <div class="content-wrapper">
                 <div class="title-wrapper">
-                    <h1>{{$t('home.sec3.title')}}</h1>
-                    <h3>{{$t('home.sec3.sub-title')}}</h3>
+                    <h1 class="title">{{$t('home.sec3.title')}}</h1>
                 </div>
                 <div class="partners-wrapper">
 
@@ -47,18 +46,11 @@ export default defineComponent({
 
 <style scoped>
 
-
 section{
-    height: 100vh;
-    /* padding-block: 100px; */
     position: relative;
-    display: flex;
-    justify-content: center;
-    background: #EFEDF2 !important;
-}
-
-.content-wrapper{
-    
+    background: #EFEDF2;
+    padding-block: 100px;
+    color: #062C43;
 }
 
 .title-wrapper{
@@ -67,18 +59,23 @@ section{
 
 .partners-wrapper{
     display: grid;
-    width: 100vw;
     grid-template-rows: 1fr 1fr 1fr;
 }
 .partner-logo{
     margin: auto;
-    vertical-align: middle;
-    width: 90px;
+    width: 100px;
 }
 .wrapper{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    width: 100vw;
     margin: 20px auto;
+    min-width: 100%;
+}
+
+.title{
+    font-size: 40px;
+    text-transform: uppercase;
+    margin-top: 0;
+    margin-bottom: 50px;
 }
 </style>

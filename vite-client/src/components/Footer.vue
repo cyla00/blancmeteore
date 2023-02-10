@@ -8,10 +8,14 @@ export default defineComponent({
 
 <template>
     <footer>
-        foot
+        footer
     </footer>
 </template>
 
 <style scoped>
-
+#footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%; 
+}
 </style>

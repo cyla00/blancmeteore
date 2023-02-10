@@ -16,15 +16,18 @@
         "sub-title":"agence de communication innovante",
         "sec2": {
             "title": "Nos solutions",
-            "sub-title": "sub titre fr",
+            "sub-title": "découvrez ce que nous pouvons vous offrir",
             "card-descr-acc":"description de la categorie accompagnement digital rapide english",
             "card-descr-grpah":"description de la categorie graphisme digital rapide english",
             "card-descr-sites":"description de la categorie sites digital rapide english",
             "card-btn":"decouvrir"
         },
         "sec3": {
+            "title": "nous Innovons ensemble"
+        },
+        "sec4": {
             "title": "nous Innovons ensemble",
-            "sub-title": "sub3 titre fr"
+            "sub-title": "sub4 titre fr"
         }
     }
   }
