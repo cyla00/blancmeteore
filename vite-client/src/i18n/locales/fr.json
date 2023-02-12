@@ -29,5 +29,18 @@
             "title": "nous Innovons ensemble",
             "sub-title": "sub4 titre fr"
         }
+    },
+    "connection": {
+        "email":"email",
+        "password":"mot de passe",
+        "submit":"connection",
+        "registration-fallback":"Vous n'avez pas de compte?",
+        "registration-fallback-url":"Enregistrer"
+    },
+    "registration": {
+        "":"",
+        "":"",
+        "":"",
+        "":""
     }
   }
