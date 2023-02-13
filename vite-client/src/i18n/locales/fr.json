@@ -31,6 +31,7 @@
         }
     },
     "connection": {
+        "title":"connectez vous a votre compte",
         "email":"email",
         "password":"mot de passe",
         "submit":"connection",
@@ -38,9 +39,16 @@
         "registration-fallback-url":"Enregistrer"
     },
     "registration": {
-        "":"",
-        "":"",
-        "":"",
-        "":""
+        "title":"rejoignez nous",
+        "first_name":"prenom",
+        "last_name":"non",
+        "email":"email",
+        "password":"mot de passe",
+        "repeat_password":"verification mot de passe",
+        "submit":"registration",
+        "login-fallback":"Vous avez deaj un compte?",
+        "login-fallback-url":"Connection",
+        "conditions":"accepter les",
+        "conditions-url":"Conditions de confidentialite"
     }
   }

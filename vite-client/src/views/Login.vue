@@ -2,17 +2,25 @@
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-    name: 'Login'
+    name: 'Login',
+    data(){
+        return{
+            input_email: '',
+            input_password: '',
+        }
+    }
 })
 </script>
 
 <template>
     <section>
+        
         <div class="form-wrapper">
             <div class="image">
                 <img class="illustration" src="@/assets/login.png" alt="login connection image">
             </div>
             <div class="form">
+                <h3 class="form-title">{{$t('connection.title')}}</h3>
                 <label for="login-email">{{$t('connection.email')}}</label>
                 <input type="email" name="login-email" v-model="input_email">
 
