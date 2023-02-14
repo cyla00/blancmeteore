@@ -8,7 +8,8 @@
         "graph": "Graphisme",
         "sites": "Developpement Sites",
         "connection": "Connection",
-        "dashboard": "Profil"
+        "dashboard": "Profil",
+        "deconnection": "êtes-vous sûr de vouloir vous déconnecter?"
     },
     "home": {
         "title": "blanc meteore",

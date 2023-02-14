@@ -1,7 +1,8 @@
 <script lang='ts'>
 import { defineComponent } from 'vue'
 import LanguageSwitcher from "@/components/LanguageSwitcher.vue"
-import Tr from "@/i18n/translation"
+import axios from 'axios'
+import jwt_decode from "jwt-decode"
 
 export default defineComponent({
     name: 'Header',
@@ -15,6 +16,8 @@ export default defineComponent({
             scrollPosition: false,
             mobileNav: false,
             windowWidth: 0,
+            showLogoutForm: false,
+            dashboardPath: ''
         }
     },
     methods:{
@@ -39,18 +42,54 @@ export default defineComponent({
             }
             this.scrollPosition = false
             return
+        },
+        logout(){
+            localStorage.clear()
+            this.isLogged = false
+            return this.$router.push('/login')
         }
     },
-    created(){
-        this.checkScreen()
+    async created(){
+        await this.checkScreen()
         window.addEventListener('resize', this.checkScreen)
         window.addEventListener('scroll', this.updateScroll)
+
+        if(localStorage.getItem('token')){
+            const auth = {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                }
+            }
+
+            await axios.post('http://localhost:3000/api/jwt-check', {}, auth).then((res) => {
+                if(res.status === 200) {
+                    const token_role:any = jwt_decode(localStorage.getItem('token'))
+                    this.dashboardPath = `${token_role.role}-dash`
+                    return this.isLogged = true
+                }
+            }).catch((err) => {
+                localStorage.clear()
+                this.isLogged = false
+                window.location.href = '/login'
+            })
+        }
     }
 })
 </script>
 
 <template>
     <header :class="{'scrolled-desktop-nav': scrollPosition, 'mobile-header': mobile}">
+
+
+
+        <Teleport to="body">
+            <div v-if="showLogoutForm" class="modal">
+                <p>{{$t('header.deconnection')}}</p>
+                <button @click="open = false">Close</button>
+            </div>
+        </Teleport>
+
+
         <nav class="desktop-nav" v-if="!mobile">
             <div class="logo-wrapper">
                 <router-link to="/"><img class="logo" src="@/assets/logo.png" alt="company logo"></router-link>
@@ -64,7 +103,8 @@ export default defineComponent({
 
             <div class="connection-wrapper">
                 <router-link class="conn-btn" to="/login" v-if="!isLogged">{{$t('header.connection')}}<i class='bx bx-log-in-circle'></i></router-link>
-                <router-link class="conn-btn" to="/user-dash" v-if="isLogged">{{$t('header.dashboard')}}<i class='bx bx-user'></i></router-link>
+                <router-link class="conn-btn" :to="dashboardPath" v-if="isLogged">{{$t('header.dashboard')}}<i class='bx bx-user'></i></router-link>
+                <router-link class="conn-btn logout" to="/user-dash" v-if="isLogged" @click="logout"><i class='bx bx-log-out-circle'></i></router-link>
             </div>
             <div class="lang-wrapper">
                 <LanguageSwitcher></LanguageSwitcher>
@@ -131,6 +171,7 @@ header{
     background: #4db3af;
     border-radius: 100px;
     color: #ffffff;
+    vertical-align: middle;
 }
 .lang-wrapper{
     margin: auto 0;
@@ -181,6 +222,16 @@ i{
     transform: rotate(180deg);
 }
 
+.logout{
+    color: #FF605C;
+    background: none;
+    padding: 5px;
+    font-size: 30px;
+}
 
+.modal{
+    position: fixed;
+
+}
 
 </style>

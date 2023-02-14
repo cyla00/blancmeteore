@@ -1,5 +1,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
+import axios from 'axios'
+import jwt_decode from "jwt-decode"
 
 export default defineComponent({
     name: 'Login',
@@ -8,7 +10,38 @@ export default defineComponent({
             input_email: '',
             input_password: '',
         }
-    }
+    },
+    methods: {
+        async login(){
+
+            if(this.input_email === '' || this.input_password === ''){
+                return
+            }
+
+            const baisc_auth = {
+                auth: {
+                    username: this.input_email,
+                    password: this.input_password
+                }
+            }
+
+            await axios.post('http://localhost:3000/api/login', {}, baisc_auth).then(async (res) => {
+                if(res.status === 200){
+                    localStorage.setItem('token', res.data.token)
+                    const decoded:any = jwt_decode(res.data.token)
+
+                    if(decoded.role === 'admin') return window.location.href = '/admin-dash'
+                    if(decoded.role === 'commercial') return window.location.href = '/commercial-dash'
+                    if(decoded.role === 'creator') return window.location.href = '/creator-dash'
+                    if(decoded.role === 'user') return window.location.href = '/user-dash'
+                }
+                return
+            }).catch((e) => {
+                localStorage.clear()
+                return
+            })
+        }
+    },
 })
 </script>
 
@@ -26,7 +59,7 @@ export default defineComponent({
 
                 <label for="login-password">{{$t('connection.password')}}</label>
                 <input type="password" name="login-password" v-model="input_password">
-                <button class="submit">{{$t('connection.submit')}}</button>
+                <button class="submit" @click="login">{{$t('connection.submit')}}</button>
 
                 <div class="registration-wrapper">
                     <p class="registration-fallback">{{$t('connection.registration-fallback')}}</p>

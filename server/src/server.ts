@@ -90,7 +90,7 @@ app.use(publicProfileCheck.routes(), publicProfileCheck.allowedMethods()) // che
 //protected routes by jwt verification middleware + jwt check
 app.use(jwtMiddleware)
 
-app.use(jwtCheck.routes(), jwtCheck.allowedMethods())
+app.use(jwtCheck.routes(), jwtCheck.allowedMethods()) // check jwt validity
 app.use(staffRegistration.routes(), staffRegistration.allowedMethods()) // registers staff users (creator & commercial)
 app.use(userModify.routes(), userModify.allowedMethods()) // modifies any role account
 app.use(userDelete.routes(), userDelete.allowedMethods()) // deletes users

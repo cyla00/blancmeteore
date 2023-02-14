@@ -1,5 +1,5 @@
 // register a user account
-// takes body params "email" and "password"
+// takes body params "email" "password" "firstname" "lastname"
 // password sha256 + base64
 
 import { Router, Status, sha256 } from '../deps.ts'
@@ -43,8 +43,8 @@ registration.post('/api/registration', async (ctx) => {
     const hashedPwd = sha256(bodyVal.password, "utf8", "base64").toString()
     await users.insertOne({
         id: new_id,
-        firstName: '',
-        lastName: '',
+        firstName: bodyVal.firstname,
+        lastName: bodyVal.lastname,
         companyName: '',
         siret: '',
         tel: '',

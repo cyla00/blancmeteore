@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import axios from 'axios'
+import jwt_decode from 'jwt-decode'
 
 //routes
 import Home from '../views/Home.vue'
@@ -159,10 +160,34 @@ router.beforeEach(async (to:any, from:any, next:any) => {
 	if(!to.meta.private && to.meta.type !== 'public') return next()
 
   	if(to.meta.private){
-    	await axios.post('http://localhost:3000/api/jwt-check', {}, auth).then((res:any) => {
-            // register the response token here
-      		return next()
+    	await axios.post('http://localhost:3000/api/jwt-check', {}, auth).then(async (res:any) => {
+            const decoded = await jwt_decode(localStorage.getItem('token'))
+            if(to.name === 'AdminDash'){
+                if(decoded.role === 'admin') return next()
+                localStorage.clear()
+                return window.location.href = '/login'
+            }
+
+            if(to.name === 'CommercialDash'){
+                if(decoded.role === 'commercial') return next()
+                localStorage.clear()
+                return window.location.href = '/login'
+            }
+
+            if(to.name === 'CreatorDash'){
+                if(decoded.role === 'creator') return next()
+                localStorage.clear()
+                return window.location.href = '/login'
+            }
+
+            if(to.name === 'UserDash'){
+                if(decoded.role === 'user') return next()
+                localStorage.clear()
+                return window.location.href = '/login'
+            }
+
     	}).catch((err:any) => {
+            console.log(err)
       		localStorage.clear()
       		return next({ name: 'Login' })
     	})

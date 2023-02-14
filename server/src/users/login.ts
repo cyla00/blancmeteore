@@ -73,7 +73,7 @@ login.post('/api/login', async (ctx) => {
             token: token
         }
     }catch(_e){
-        console.log(_e);
+        console.log(_e)
         
         ctx.response.status = Status.InternalServerError
         return ctx.response.body = {
