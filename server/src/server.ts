@@ -1,4 +1,5 @@
 // deno run --allow-net --allow-env --allow-read --watch ./src/database/seed.ts FOR DATABASE SEED
+// pm2 start server.ts --interpreter="deno" --interpreter-args="run --allow-net --allow-read --allow-write --allow-sys --unstable --no-prompt" --name "blancmeteore" -- start --production
 // deno run --allow-net --allow-read --allow-write --allow-sys --watch ./src/server.ts TO RUN SERVER
 // deno compile --allow-net --allow-read --allow-write --allow-sys ./src/server.ts COMPILE TO EXECUTABLE
 

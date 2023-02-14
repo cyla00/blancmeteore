@@ -131,7 +131,7 @@ header{
     padding: 10px 40px;
     transition: 0.1s ease all;
     top: 0;
-    z-index: 99;
+    z-index: 80;
     font-size: 15px;
     font-family: Inter;
     font-weight: bold;

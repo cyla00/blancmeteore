@@ -3,12 +3,20 @@ import { defineComponent } from 'vue'
 import axios from 'axios'
 import jwt_decode from "jwt-decode"
 
+import Popup from '../components/Popup.vue'
+
 export default defineComponent({
     name: 'Login',
+    components: {
+        Popup,
+    },
     data(){
         return{
             input_email: '',
             input_password: '',
+            errMsg: '',
+            succMsg: '',
+            show: false,
         }
     },
     methods: {
@@ -29,25 +37,30 @@ export default defineComponent({
                 if(res.status === 200){
                     localStorage.setItem('token', res.data.token)
                     const decoded:any = jwt_decode(res.data.token)
-
-                    if(decoded.role === 'admin') return window.location.href = '/admin-dash'
-                    if(decoded.role === 'commercial') return window.location.href = '/commercial-dash'
-                    if(decoded.role === 'creator') return window.location.href = '/creator-dash'
-                    if(decoded.role === 'user') return window.location.href = '/user-dash'
+                    this.show = true
+                    this.succMsg = res.data.SuccMsg
+                    setTimeout(() => {
+                        if(decoded.role === 'admin') return window.location.href = '/admin-dash'
+                        if(decoded.role === 'commercial') return window.location.href = '/commercial-dash'
+                        if(decoded.role === 'creator') return window.location.href = '/creator-dash'
+                        if(decoded.role === 'user') return window.location.href = '/user-dash'
+                    }, 1000)
                 }
                 return
             }).catch((e) => {
+                this.show = true
+                this.errMsg = e.response.data.ErrMsg
                 localStorage.clear()
                 return
             })
-        }
+        },
     },
 })
 </script>
 
 <template>
     <section>
-        
+        <Popup v-model:Show="show" v-model:ErrMsg="errMsg" v-model:SuccMsg="succMsg" />
         <div class="form-wrapper">
             <div class="image">
                 <img class="illustration" src="@/assets/login.png" alt="login connection image">
