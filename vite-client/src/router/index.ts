@@ -156,12 +156,22 @@ const auth = {
 }
 
 router.beforeEach(async (to:any, from:any, next:any) => {
+    const decoded = await jwt_decode(localStorage.getItem('token'))
+    if(to.path === '/login' || to.path === '/registration'){
+        if(!localStorage.getItem('token')){
+            return next()
+        }
+        if(decoded.role === 'admin') return next('/admin-dash')
+        if(decoded.role === 'commercial') return next('/commercial-dash')
+        if(decoded.role === 'creator') return next('/creator-dash')
+        if(decoded.role === 'user') return next('/user-dash')
+    }
 
 	if(!to.meta.private && to.meta.type !== 'public') return next()
 
   	if(to.meta.private){
     	await axios.post('http://localhost:3000/api/jwt-check', {}, auth).then(async (res:any) => {
-            const decoded = await jwt_decode(localStorage.getItem('token'))
+        
             if(to.name === 'AdminDash'){
                 if(decoded.role === 'admin') return next()
                 localStorage.clear()

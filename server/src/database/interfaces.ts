@@ -14,7 +14,7 @@ export interface UserSchema {
     website: string,
     createdAt: string,
     lastLogin: string, 
-    modifiedAt: string,
+    modifiedAt: string, 
     role: string,
     public: boolean,
     subscriptionId: string,

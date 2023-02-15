@@ -1,16 +1,69 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
+import axios from 'axios'
+import Popup from '../components/Popup.vue'
 
 export default defineComponent({
     name: 'Registration',
+    components: {
+        Popup,
+    },
     data(){
         return{
             input_first_name: '',
             input_last_name: '',
-            input_name: '',
+            input_email: '',
             input_password: '',
             input_repeat_password: '',
             conditions: false,
+            show: false,
+            errMsg: '',
+            succMsg: '',
+        }
+    },
+    methods: {
+        async registration(){
+
+            if(this.input_first_name === '' || this.input_last_name === '' || this.input_email === '' || this.input_password === '' || this.input_repeat_password === ''){
+                this.show = true
+                this.errMsg = 'remplir tous les champs'
+                return
+            }
+
+            if(this.input_password != this.input_repeat_password){
+                this.show = true
+                this.errMsg = 'Les mots de passe ne correspondent pas'
+                return
+            }
+
+            if(!this.conditions){
+                this.show = true
+                this.errMsg = 'accepter les termes et conditions'
+                return
+            }
+
+            const body = {
+                'email': this.input_email,
+                'password': this.input_password,
+                'firstname': this.input_first_name,
+                'lastname': this.input_last_name
+            }
+
+            await axios.post('http://localhost:3000/api/registration', body, {}).then((res) => {
+                if(res.status === 200){
+                    this.show = true
+                    this.succMsg = res.data.SuccMsg
+                    setTimeout(() => {
+                        window.location.href = '/login'
+                    }, 1000)
+                    return
+                }
+            }).catch((e) => {
+                console.log(e)
+                this.show = true
+                this.errMsg = e.response.data.ErrMsg
+                return
+            })
         }
     }
 })
@@ -18,6 +71,7 @@ export default defineComponent({
 
 <template>
     <section>
+        <Popup v-model:Show="show" v-model:ErrMsg="errMsg" v-model:SuccMsg="succMsg" />
         <div class="form-wrapper">
             <div class="image">
                 <img class="illustration" src="@/assets/login.png" alt="login connection image">
@@ -31,14 +85,14 @@ export default defineComponent({
                 <input type="text" name="last-name" v-model="input_last_name">
 
                 <label for="registration-email">{{$t('registration.email')}}</label>
-                <input type="email" name="registration-email" v-model="input_name">
+                <input type="email" name="registration-email" v-model="input_email">
 
                 <label for="registration-password">{{$t('registration.password')}}</label>
                 <input type="password" name="registration-password" v-model="input_password">
 
                 <label for="registration-repeat-password">{{$t('registration.repeat_password')}}</label>
                 <input type="password" name="registration-repeat-password" v-model="input_repeat_password">
-                <button class="submit">{{$t('registration.submit')}}</button>
+                <button class="submit" @click="registration">{{$t('registration.submit')}}</button>
 
                 <div class="login-wrapper">
                     <input type="checkbox" v-model="conditions">

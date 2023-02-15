@@ -63,6 +63,7 @@ staffRegistration.post('/api/staff-registration', async (ctx) => {
         lastLogin: ``,
         modifiedAt: ``,
         role: `${bodyVal.role}`,
+        public: false,
         subscriptionId: '',
         idGraphicOrders: [],
         sitesVitrineOrders: [],
