@@ -156,11 +156,12 @@ const auth = {
 }
 
 router.beforeEach(async (to:any, from:any, next:any) => {
-    const decoded = await jwt_decode(localStorage.getItem('token'))
+
     if(to.path === '/login' || to.path === '/registration'){
         if(!localStorage.getItem('token')){
             return next()
         }
+        const decoded = jwt_decode(localStorage.getItem('token'))
         if(decoded.role === 'admin') return next('/admin-dash')
         if(decoded.role === 'commercial') return next('/commercial-dash')
         if(decoded.role === 'creator') return next('/creator-dash')
@@ -170,35 +171,35 @@ router.beforeEach(async (to:any, from:any, next:any) => {
 	if(!to.meta.private && to.meta.type !== 'public') return next()
 
   	if(to.meta.private){
+        const decoded = jwt_decode(localStorage.getItem('token'))
     	await axios.post('http://localhost:3000/api/jwt-check', {}, auth).then(async (res:any) => {
         
             if(to.name === 'AdminDash'){
                 if(decoded.role === 'admin') return next()
-                localStorage.clear()
+                localStorage.removeItem("token")
                 return window.location.href = '/login'
             }
 
             if(to.name === 'CommercialDash'){
                 if(decoded.role === 'commercial') return next()
-                localStorage.clear()
+                localStorage.removeItem("token")
                 return window.location.href = '/login'
             }
 
             if(to.name === 'CreatorDash'){
                 if(decoded.role === 'creator') return next()
-                localStorage.clear()
+                localStorage.removeItem("token")
                 return window.location.href = '/login'
             }
 
             if(to.name === 'UserDash'){
                 if(decoded.role === 'user') return next()
-                localStorage.clear()
+                localStorage.removeItem("token")
                 return window.location.href = '/login'
             }
 
     	}).catch((err:any) => {
-            console.log(err)
-      		localStorage.clear()
+            localStorage.removeItem("token")
       		return next({ name: 'Login' })
     	})
   	}
@@ -207,7 +208,6 @@ router.beforeEach(async (to:any, from:any, next:any) => {
     	await axios.post('http://localhost:3000/api/public-profile', {}, {}).then((res:any) => {
 			return next()
 		}).catch((err:any) => {
-			localStorage.clear()
 			return next({ name: 'ProfileNotFound' })
 		})
   	}

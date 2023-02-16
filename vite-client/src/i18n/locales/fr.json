@@ -27,8 +27,12 @@
             "title": "nous Innovons ensemble"
         },
         "sec4": {
-            "title": "nous Innovons ensemble",
-            "sub-title": "sub4 titre fr"
+            "title": "nos resultats",
+            "sub-title": "rejoinex nous",
+            "insta": "abonnés Instagram",
+            "facebook": "abonnés Facebook",
+            "crea": "créations graphiques",
+            "video": "vidéos"
         }
     },
     "connection": {
