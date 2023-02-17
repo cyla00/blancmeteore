@@ -120,15 +120,17 @@ export default defineComponent({
             </div>
         </nav>
     </header>
+    
 </template>
 
 <style scoped>
+
 header{
     background: rgba(255, 255, 255, 0.8);
     position: sticky;
     border-radius: 100px;
     margin: 1% 2%;
-    padding: 10px 40px;
+    padding: 10px 20px;
     transition: 0.1s ease all;
     top: 0;
     z-index: 80;

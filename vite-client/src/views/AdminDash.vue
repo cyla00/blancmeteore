@@ -2,16 +2,21 @@
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-    name: 'AdminDash'
+    name: 'AdminDash',
+    components: {
+        
+    },
 })
 </script>
 
 <template>
     <section>
-        admindash
+        <h1>admin dash</h1>
     </section>
 </template>
 
 <style scoped>
-
+section{
+    /* height: 100vh; */
+}
 </style>
