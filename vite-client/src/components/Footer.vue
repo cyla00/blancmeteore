@@ -13,9 +13,11 @@ export default defineComponent({
 </template>
 
 <style scoped>
-#footer {
+footer {
   position: absolute;
   bottom: 0;
   width: 100%; 
+  background: #ffffff !important;
+  z-index: 99;
 }
 </style>

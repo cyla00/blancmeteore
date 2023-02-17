@@ -8,10 +8,20 @@ export default defineComponent({
 
 <template>
     <section>
-        graph
+        <div class="card">
+            <h3>creation graphiques</h3>
+            <button>demarrer</button>
+        </div>
     </section>
 </template>
 
 <style scoped>
-
+section{
+    display: grid;
+    grid-template-columns: 1fr;
+    height: 90vh;
+}
+.card{
+    margin: auto;
+}
 </style>

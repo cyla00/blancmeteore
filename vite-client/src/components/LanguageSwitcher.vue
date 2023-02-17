@@ -37,5 +37,14 @@
 
 
 <style scoped>
-
+select{
+    padding: 8px 20px;
+    background: #4db3af;
+    border-radius: 100px;
+    color: #ffffff;
+    vertical-align: middle;
+    outline: none;
+    transition: 0.2s ease all;
+    border: none;
+}
 </style>

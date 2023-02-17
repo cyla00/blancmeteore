@@ -134,7 +134,7 @@ header{
     z-index: 80;
     font-size: 15px;
     font-family: Inter;
-    font-weight: bold;
+    font-weight: 300;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
 }
 .scrolled-desktop-nav{
@@ -179,7 +179,7 @@ header{
 a{
     text-decoration: none;
     margin-right: 20px;
-    color: #062C43;
+    color: #000;
 }
 a:hover{
     transition: 0.2s ease all;

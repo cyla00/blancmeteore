@@ -64,15 +64,16 @@ section{
 }
 
 .team-wrapper{
-    width: 50%;
+    /* width: 50%; */
     border-radius: 30px;
     display: flex;
-    margin: auto;
+    margin: 100px auto;
     flex-direction: row;
     justify-content: center;
     padding: 2% 4%;
     text-align: start;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+    background: none;
+    /* box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px; */
 }
 .text-wrapper{
     margin: auto 50px;
@@ -85,7 +86,7 @@ section{
 .stats-wrapper{
     display: flex;
     flex-direction: row;
-    margin-block: 100px;
+    margin-bottom: 100px;
 }
 
 .card{
@@ -104,5 +105,10 @@ section{
 }
 .card p{
     font-size: 15px;
+}
+
+.title{
+    font-size: 40px;
+    text-transform: uppercase;
 }
 </style>

@@ -3,6 +3,7 @@ body{
     margin: 0;
     padding: 0;
     background-image: radial-gradient(circle, #4db3ab, #2a9ba4, #0b8299, #056a8a, #155277);
+    position:relative;
 }
 
 #app {

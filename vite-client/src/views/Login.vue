@@ -88,7 +88,7 @@ export default defineComponent({
 section{
     display: flex;
     justify-content: center;
-    height: 80vh;
+    height: 90vh;
     transition: 0.2s ease all;
 }
 .form-wrapper{
