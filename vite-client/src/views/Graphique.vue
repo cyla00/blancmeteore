@@ -1,16 +1,26 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
+import Graphisme from '../components/products/Graphisme.vue'
 
 export default defineComponent({
-    name: 'Graphique'
+    name: 'Graphique',
+    components: {
+        Graphisme,
+    },
+    data(){
+        return{
+            open: false
+        }
+    }
 })
 </script>
 
 <template>
     <section>
         <div class="card">
+            <Graphisme v-model:open="open"/>
             <h3>creation graphiques</h3>
-            <button>demarrer</button>
+            <button @click="this.open = true">demarrer</button>
         </div>
     </section>
 </template>
