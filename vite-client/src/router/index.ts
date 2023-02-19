@@ -171,6 +171,11 @@ router.beforeEach(async (to:any, from:any, next:any) => {
 	if(!to.meta.private && to.meta.type !== 'public') return next()
 
   	if(to.meta.private){
+
+        if(!localStorage.getItem('token')){
+            return next({ name: 'Login' })
+        }
+
         const decoded = jwt_decode(localStorage.getItem('token'))
     	await axios.post('http://localhost:3000/api/jwt-check', {}, auth).then(async (res:any) => {
         

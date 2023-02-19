@@ -1,5 +1,5 @@
 // created a subscription linked to a user
-// body vals (type, questDejaIdGraph, questSecteurActivite, questObjectiveCreation, instagram, facebook, linkedin, tiktok, linkInstagram, linkFacebook, linkLinkedin, linkTiktok, infoSuppl)
+// body vals (type, questDejaIdGraph, questSecteurActivite, questObjectiveCreation, instagram, facebook, instagram, linkedin, tiktok, linkInstagram, linkFacebook, linkLinkedin, linkTiktok, infoSuppl)
 
 import { Router, Status, config } from '../../deps.ts'
 import db from '../../database/connection.ts'
@@ -14,6 +14,8 @@ createSubscription.post('/api/create-subscription', async (ctx) => {
         const date = new Date()
         const body:any = await ctx.request.body()
         const bodyVal = await body.value
+        console.log(bodyVal, jwtDecode(token).role);
+        
 
         const users = db.collection<UserSchema>("users")
         const subscriptions = db.collection<SubscriptionOrderSchema>("subscriptions")
