@@ -14,7 +14,6 @@ createSubscription.post('/api/create-subscription', async (ctx) => {
         const date = new Date()
         const body:any = await ctx.request.body()
         const bodyVal = await body.value
-        console.log(bodyVal, jwtDecode(token).role);
         
 
         const users = db.collection<UserSchema>("users")
@@ -41,9 +40,9 @@ createSubscription.post('/api/create-subscription', async (ctx) => {
 			}
 		}
 
-        const checkSub:any = await users.findOne({id: jwtDecode(token).id})
+        const checkSub:any = await subscriptions.findOne({customerId: jwtDecode(token).id})
         
-        if(checkSub.subscriptionId !== ''){
+        if(checkSub && checkSub.type !== 'audit'){
                 ctx.response.status = Status.BadRequest
                 return ctx.response.body = {
                         ErrMsg: 'Une subscription existe'
@@ -57,6 +56,7 @@ createSubscription.post('/api/create-subscription', async (ctx) => {
                 customerId: jwtDecode(token).id,
                 price: 0,
                 type: bodyVal.type,
+                category: 'subscription',
                 questDejaIdGraph: bodyVal.questDejaIdGraph,
                 questSecteurActivite: bodyVal.questSecteurActivite,
                 questObjectiveCreation: bodyVal.questObjectiveCreation,

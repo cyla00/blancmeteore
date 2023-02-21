@@ -1,10 +1,15 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
+import axios from 'axios'
+import Popup from '../Popup.vue'
 
 export default defineComponent({
     props: {
         open: Boolean,
     },
+    components: {
+        Popup,
+    }, 
     data() {
         return{
             objectives: '',
@@ -13,8 +18,31 @@ export default defineComponent({
             ig_url: '',
             tk_url: '',
             li_url: '',
+            errMsg: '',
+            succMsg: '',
+            emptyMsg: 'remplir avant de continuer',
+            logMsg: 'connectez-vous avant de continuer',
         }
     },
+    methods: {
+        next1(){
+            if(this.objectives === '' && this.objectives_autre === ''){
+                this.show = true
+                return this.errMsg = this.emptyMsg
+            }
+            document.getElementById('2').scrollIntoView()
+        },
+        next2(){
+            if(this.fb_url === '' && this.ig_url === '' && this.tk_url === '' && this.li_url === ''){
+                this.show = true
+                return this.errMsg = this.emptyMsg
+            }
+            document.getElementById('3').scrollIntoView()
+        },
+        async checkout(){
+
+        }
+    }
 })
 </script>
 
@@ -22,6 +50,7 @@ export default defineComponent({
     <Teleport to="body">
         <Transition>
         <div class="wrapper" v-if="open">
+            <Popup v-model:Show="show" v-model:ErrMsg="errMsg" v-model:SuccMsg="succMsg" />
             <button class="close-btn" @click="this.$emit('update:open', false)"><i class='bx bx-x'></i></button>
             <div class="form-wrapper">
 
@@ -29,7 +58,6 @@ export default defineComponent({
                 <div class="quest" id="1">
                     <div class="inner-quest">
                         
-
                         <h3>objectifs</h3>
                         <div>
                             <input type="radio" name="lancer" value="lancer mon activite" v-model="objectives">
@@ -44,9 +72,8 @@ export default defineComponent({
                         <div>
                             <input type="text" name="autre" placeholder="Autre" v-model="objectives_autre">
                         </div>
-
+                        <button @click="next1">next</button>
                     </div>
-                    <a href="#2">next</a>
                 </div>
                 
                 <div class="quest" id="2">
@@ -68,19 +95,19 @@ export default defineComponent({
                         <div>
                             <input type="text" name="" v-model="li_url" placeholder="linkedin url">
                         </div>
+                        <button @click="next2">next</button>
                     </div>
-                    <a href="#3">next</a>
                 </div>
 
                 <div class="quest" id="3">
                     <a href="#2">back</a>
                     <div class="inner-quest">
-                        <h3>infos supplementaires</h3>
+                        <h3>infos supplementaires (facultatif)</h3>
                         <div>
                             <textarea name="" id="" cols="30" rows="10"></textarea>
                         </div>
+                        <button @click="checkout">checkout</button>
                     </div>
-                    <a href="#">pay</a>
                 </div>
             </div>
         </div>

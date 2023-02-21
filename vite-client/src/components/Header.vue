@@ -44,9 +44,12 @@ export default defineComponent({
             return
         },
         logout(){
-            localStorage.clear()
-            this.isLogged = false
-            return this.$router.push('/login')
+            if(confirm('Deconnection?')){
+                localStorage.removeItem('token')
+                this.isLogged = false
+                return this.$router.push('/login')
+            }
+            return
         }
     },
     async created(){

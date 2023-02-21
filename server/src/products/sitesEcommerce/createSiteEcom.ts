@@ -22,6 +22,7 @@ createSiteEcomm.post('/api/create-site-ecommerce', async (ctx) => {
     await sitesEcomm.insertOne({
         id: prod_id,
         customerId: jwtDecode(token).id,
+        category: 'sites',
         createdAt: `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}`,
         newSiteUrl: bodyVal.newSiteUrl,
         oldSiteUrl: bodyVal.oldSiteUrl,

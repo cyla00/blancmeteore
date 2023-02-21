@@ -23,6 +23,7 @@ createSiteMesure.post('/api/create-site-mesure', async (ctx) => {
     await sitesMesure.insertOne({
         id: prod_id,
         customerId: jwtDecode(token).id,
+        category: 'sites',
         createdAt: `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}`,
         newSiteUrl: bodyVal.newSiteUrl,
         questDejaSite: bodyVal.questDejaSite,

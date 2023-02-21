@@ -3,6 +3,12 @@ import { defineComponent } from 'vue'
 import axios from 'axios'
 import Popup from '../Popup.vue'
 
+const auth = {
+    headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`
+    }
+}
+
 export default defineComponent({
     components: {
         Popup,
@@ -18,27 +24,20 @@ export default defineComponent({
     methods: {
         async continueOrder(){
             const order_data = JSON.parse(localStorage.getItem('order'))
-            console.log(order_data);
-
-            const auth = {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem('token')}`
-                }
-            }
 
             const body = {
-                type: 'lancement',
+                type: order_data.type,
                 questDejaIdGraph: order_data.id_graph,
                 questSecteurActivite: order_data.sector,
-                questObjectiveCreation: order_data.objectives && order_data.objectives_autre,
+                questObjectiveCreation: `${order_data.objectives} - ${order_data.objectives_autre}`,
                 instagram: order_data.instagram,
                 facebook: order_data.facebook,
                 linkedin: order_data.linkedin,
                 tiktok: order_data.tiktok,
-                linkInstagram: order_data.fb_url,
-                linkFacebook: order_data.ig_url,
-                linkLinkedin: order_data.tk_url,
-                linkTiktok: order_data.li_url,
+                linkInstagram: order_data.ig_url,
+                linkFacebook: order_data.fb_url,
+                linkLinkedin: order_data.li_url,
+                linkTiktok: order_data.tk_url,
             }
 
             await axios.post('http://localhost:3000/api/jwt-check', {}, auth).then(async (res) => {
@@ -47,6 +46,8 @@ export default defineComponent({
                         if(res.status === 200){
                             this.show = true
                             this.succMsg = res.data.SuccMsg
+                            localStorage.removeItem('order')
+                            return window.location.reload()
                         }
                     }).catch((e) => {
                         localStorage.removeItem('order')
@@ -64,7 +65,13 @@ export default defineComponent({
                     return window.location.href = '/login'
                 }, 1000)
             })
-            
+        },
+        removeOrder(){
+            if(confirm('remove order?')){
+                this.showCheckout = false
+                return localStorage.removeItem('order')
+            }
+            return
         }
     },
     created(){
@@ -76,11 +83,12 @@ export default defineComponent({
 </script>
 
 <template>
-    <section v-if="showCheckout">
+    <div v-if="showCheckout">
         <Popup v-model:Show="show" v-model:ErrMsg="errMsg" v-model:SuccMsg="succMsg" />
         <p>continue your order</p>
         <button @click="continueOrder">proceed</button>
-    </section>
+        <button @click="removeOrder">remove order</button>
+    </div>
 </template>
 
 <style scoped>

@@ -63,6 +63,7 @@ createIdGrpah.post('/api/create-id-graphic', async (ctx) => {
         await idGraph.insertOne({
             id: prod_id,
             customerId: jwtDecode(token).id,
+            category: 'graphisme',
             createdAt: `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}`,
             oldLogoDir: oldLogo,
             newLogo: bodyVal.fields.newLogo,

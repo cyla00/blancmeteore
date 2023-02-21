@@ -8,7 +8,7 @@ export default defineComponent({
 
 <template>
     <footer>
-        awd
+        footer
     </footer>
 </template>
 

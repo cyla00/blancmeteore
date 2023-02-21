@@ -1,13 +1,19 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
+import axios from 'axios'
+import Popup from '../Popup.vue'
 
 export default defineComponent({
     props: {
         open: Boolean,
     },
+    components: {
+        Popup,
+    },
     data() {
         return{
             id_graph: '',
+            sector: '',
             objectives: '',
             objectives_autre: '',
             facebook: false,
@@ -18,6 +24,117 @@ export default defineComponent({
             ig_url: '',
             tk_url: '',
             li_url: '',
+            show: false,
+            errMsg: '',
+            succMsg: '',
+            emptyMsg: 'remplir avant de continuer',
+            logMsg: 'connectez-vous avant de continuer',
+        }
+    },
+    methods: {
+        next1(){
+            if(this.id_graph === ''){
+                this.show = true
+                return this.errMsg = this.emptyMsg
+            }
+            document.getElementById('2').scrollIntoView()
+        },
+        next2(){
+            if(this.sector === ''){
+                this.show = true
+                return this.errMsg = this.emptyMsg
+            }
+            document.getElementById('3').scrollIntoView()
+        },
+        next3(){
+            if(this.objectives === '' && this.objectives_autre === ''){
+                this.show = true
+                return this.errMsg = this.emptyMsg
+            }
+            document.getElementById('4').scrollIntoView()
+        },
+        next4(){
+            if(!this.facebook && !this.instagram && !this.linkedin && !this.tiktok){
+                this.show = true
+                return this.errMsg = this.emptyMsg
+            }
+            document.getElementById('5').scrollIntoView()
+        },
+        async checkout(){
+            if(this.fb_url === '' && this.ig_url === '' && this.tk_url === '' && this.li_url === ''){
+                this.show = true
+                return this.errMsg = this.emptyMsg
+            }
+
+            if(!localStorage.getItem('token')){
+                this.show = true
+                this.errMsg = this.logMsg
+                const obj = {
+                    type: 'presence',
+                    id_graph: this.id_graph,
+                    sector: this.sector,
+                    objectives: this.objectives,
+                    objectives_autre: this.objectives_autre,
+                    facebook: this.facebook,
+                    instagram: this.instagram,
+                    tiktok: this.tiktok,
+                    linkedin: this.linkedin,
+                    fb_url: this.fb_url,
+                    ig_url: this.ig_url,
+                    tk_url: this.tk_url,
+                    li_url: this.li_url,
+                }
+                localStorage.setItem('order', JSON.stringify(obj))
+                setTimeout(() => {
+                    return window.location.href = '/login'
+                }, 1000)
+            }
+
+            const auth = {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                }
+            }
+
+            const body = {
+                type: 'presence',
+                questDejaIdGraph: this.id_graph,
+                questSecteurActivite: this.sector,
+                questObjectiveCreation: `${this.objectives} - ${this.objectives_autre}`,
+                instagram: this.instagram,
+                facebook: this.facebook,
+                linkedin: this.linkedin,
+                tiktok: this.tiktok,
+                linkInstagram: this.ig_url,
+                linkFacebook: this.fb_url,
+                linkLinkedin: this.li_url,
+                linkTiktok: this.tk_url,
+            }
+
+            await axios.post('http://localhost:3000/api/jwt-check', body, auth).then(async (res) => {
+                if(res.status === 200){
+                    await axios.post('http://localhost:3000/api/create-subscription', body, auth).then((res) => {
+                        if(res.status === 200){
+                            this.show = true
+                            this.succMsg = res.data.SuccMsg
+                            return window.location.reload()
+                        }
+                    }).catch((e) => {
+                        localStorage.removeItem('order')
+                        this.show = true
+                        this.errMsg = e.response.data.ErrMsg
+                        setTimeout(() => {
+                            return window.location.reload()
+                        }, 1000)
+                    })
+                }
+            }).catch((e) => {
+                this.show = true
+                this.errMsg = this.logMsg
+                setTimeout(() => {
+                    return window.location.href = '/login'
+                }, 1000)
+            })
         }
     },
 })
@@ -27,6 +144,7 @@ export default defineComponent({
     <Teleport to="body">
         <Transition>
         <div class="wrapper" v-if="open">
+            <Popup v-model:Show="show" v-model:ErrMsg="errMsg" v-model:SuccMsg="succMsg" />
             <button class="close-btn" @click="this.$emit('update:open', false)"><i class='bx bx-x'></i></button>
             <div class="form-wrapper">
 
@@ -48,9 +166,9 @@ export default defineComponent({
                             <input type="radio" name="oui" value="Identite graphique complete" v-model="id_graph">
                             <label for="oui">Identite graphique complete</label>
                         </div>
-
+                        <button @click="next1">next</button>
                     </div>
-                    <a href="#2">next</a>
+                    
                 </div>
                 
 
@@ -58,14 +176,13 @@ export default defineComponent({
                 <div class="quest" id="2">
                     <a href="#1">back</a>
                     <div class="inner-quest">
-                        
-
-                        <label for="">votre secteur d'activite</label>
-                        <input type="text" name="" id="">
-
-                        
+                        <div>
+                            <label for="">votre secteur d'activite</label>
+                            <input type="text" v-model="sector">
+                        </div>
+                        <button @click="next2">next</button>
                     </div>
-                    <a href="#3">next</a>
+                    
                 </div>
                 
 
@@ -89,9 +206,8 @@ export default defineComponent({
                         <div>
                             <input type="text" name="autre" placeholder="Autre" v-model="objectives_autre">
                         </div>
-
+                        <button @click="next3">next</button>
                     </div>
-                    <a href="#4">next</a>
                 </div>
                 
 
@@ -119,8 +235,8 @@ export default defineComponent({
                             <input type="checkbox" name="fb" v-model="linkedin">
                             <label for="fb"><i class='bx bxl-linkedin' ></i> LinkdIn</label>
                         </div>
+                        <button @click="next4">next</button>
                     </div>
-                    <a href="#5">next</a>
                 </div>
                 
 
@@ -144,10 +260,9 @@ export default defineComponent({
                         <div>
                             <input type="text" name="" v-model="li_url" placeholder="linkedin url">
                         </div>
-                        
-
+                        <button @click="checkout">checkout</button>
                     </div>
-                    <a href="#">pay</a>
+                    
                 </div>
                 
             </div>

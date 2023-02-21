@@ -44,6 +44,7 @@ export interface SubscriptionOrderSchema {
     customerId: string,
     price: number,
     type: string,
+    category: string,
     questDejaIdGraph: boolean,
     questSecteurActivite: string,
     questObjectiveCreation: string,
@@ -65,6 +66,7 @@ export interface SubscriptionOrderSchema {
 export interface IdGraphicOrderSchema {
     id: string,
     customerId: string,
+    category: string,
     createdAt: string,
     oldLogoDir: string,
     newLogo: string,
@@ -84,6 +86,7 @@ export interface IdGraphicOrderSchema {
 export interface SiteVitrineSchema {
     id: string,
     customerId: string,
+    category: string,
     createdAt: string,
     oldSiteUrl: string,
     newSiteUrl: string,
@@ -99,6 +102,7 @@ export interface SiteVitrineSchema {
 export interface SiteEComSchema {
     id: string,
     customerId: string,
+    category: string,
     createdAt: string,
     oldSiteUrl: string,
     newSiteUrl: string,
@@ -115,6 +119,7 @@ export interface SiteEComSchema {
 export interface SiteMesureSchema {
     id: string,
     customerId: string,
+    category: string,
     createdAt: string,
     newSiteUrl: string,
     questDejaSite: boolean,

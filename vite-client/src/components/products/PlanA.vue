@@ -9,7 +9,7 @@ export default defineComponent({
     },
     components: {
         Popup,
-    },
+    }, 
     data() {
         return{
             id_graph: '',
@@ -70,6 +70,7 @@ export default defineComponent({
                 this.show = true
                 this.errMsg = this.logMsg
                 const obj = {
+                    type: 'lancement',
                     id_graph: this.id_graph,
                     sector: this.sector,
                     objectives: this.objectives,
@@ -99,15 +100,15 @@ export default defineComponent({
                 type: 'lancement',
                 questDejaIdGraph: this.id_graph,
                 questSecteurActivite: this.sector,
-                questObjectiveCreation: this.objectives && this.objectives_autre,
+                questObjectiveCreation: `${this.objectives} - ${this.objectives_autre}`,
                 instagram: this.instagram,
                 facebook: this.facebook,
                 linkedin: this.linkedin,
                 tiktok: this.tiktok,
-                linkInstagram: this.fb_url,
-                linkFacebook: this.ig_url,
-                linkLinkedin: this.tk_url,
-                linkTiktok: this.li_url,
+                linkInstagram: this.ig_url,
+                linkFacebook: this.fb_url,
+                linkLinkedin: this.li_url,
+                linkTiktok: this.tk_url,
             }
 
             await axios.post('http://localhost:3000/api/jwt-check', body, auth).then(async (res) => {
@@ -116,6 +117,7 @@ export default defineComponent({
                         if(res.status === 200){
                             this.show = true
                             this.succMsg = res.data.SuccMsg
+                            return window.location.reload()
                         }
                     }).catch((e) => {
                         localStorage.removeItem('order')

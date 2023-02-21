@@ -22,6 +22,7 @@ createSiteVitrine.post('/api/create-site-vitrine', async (ctx) => {
     await siteVitrines.insertOne({
         id: prod_id,
         customerId: jwtDecode(token).id,
+        category: 'sites',
         createdAt: `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}`,
         oldSiteUrl: bodyVal.oldSiteUrl,
         newSiteUrl: bodyVal.newSiteUrl,
