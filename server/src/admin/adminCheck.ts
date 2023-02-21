@@ -38,6 +38,7 @@ export const adminCheck = async () => {
                 role: 'admin',
                 public: false,
                 subscriptionId: '',
+                auditId: '',
                 idGraphicOrders: [],
                 sitesVitrineOrders: [],
                 sitesEcomOrders: [],

@@ -73,17 +73,34 @@ createSubscription.post('/api/create-subscription', async (ctx) => {
                 isActive: true,
                 expirationDate: '',
         }).then(async (doc) => {
-                await users.updateOne({id: jwtDecode(token).id}, {$set: {subscriptionId: new_id}}).then((doc) => {
+
+                if(bodyVal.type === 'audit'){
+                    await users.updateOne({id: jwtDecode(token).id}, {$set: {auditId: new_id}}).then((doc) => {
                         ctx.response.status = Status.OK
                         return ctx.response.body = {
                                 SuccMsg: 'Abonnement créé avec succès'
                         }  
-                }).catch((_e) => {
-                        ctx.response.status = Status.InternalServerError
+                    }).catch((_e) => {
+                            ctx.response.status = Status.InternalServerError
+                            return ctx.response.body = {
+                                    ErrMsg: 'Erreur'
+                            }  
+                    })
+                }
+                else{
+                    await users.updateOne({id: jwtDecode(token).id}, {$set: {subscriptionId: new_id}}).then((doc) => {
+                        ctx.response.status = Status.OK
                         return ctx.response.body = {
-                                ErrMsg: 'Erreur'
+                                SuccMsg: 'Abonnement créé avec succès'
                         }  
-                })
+                    }).catch((_e) => {
+                            ctx.response.status = Status.InternalServerError
+                            return ctx.response.body = {
+                                    ErrMsg: 'Erreur'
+                            }  
+                    })
+                }
+                
         }).catch((_e) => {
 			console.log(_e);
 			

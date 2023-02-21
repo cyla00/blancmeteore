@@ -18,6 +18,7 @@ export interface UserSchema {
     role: string,
     public: boolean,
     subscriptionId: string,
+    auditId: string,
     idGraphicOrders: Array<string>,
     sitesVitrineOrders: Array<string>,
     sitesEcomOrders: Array<string>,

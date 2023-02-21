@@ -60,6 +60,7 @@ registration.post('/api/registration', async (ctx) => {
         role: 'user',
         public: false,
         subscriptionId: '',
+        auditId: '',
         idGraphicOrders: [],
         sitesVitrineOrders: [],
         sitesEcomOrders: [],

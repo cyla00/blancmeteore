@@ -120,7 +120,6 @@ export default defineComponent({
                             return window.location.reload()
                         }
                     }).catch((e) => {
-                        localStorage.removeItem('order')
                         this.show = true
                         this.errMsg = e.response.data.ErrMsg
                         setTimeout(() => {
