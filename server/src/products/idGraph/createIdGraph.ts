@@ -32,7 +32,7 @@ createIdGrpah.post('/api/create-id-graphic', async (ctx) => {
                 console.log(e)
                 ctx.response.status = Status.InternalServerError
                 return ctx.response.body = {
-                    ErrMsg: 'Erreur'
+                    ErrMsg: 'File error'
                 }
             }
         }

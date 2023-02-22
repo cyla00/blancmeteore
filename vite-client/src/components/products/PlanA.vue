@@ -3,6 +3,12 @@ import { defineComponent } from 'vue'
 import axios from 'axios'
 import Popup from '../Popup.vue'
 
+const auth = {
+    headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`
+    }
+}
+
 export default defineComponent({
     props: {
         open: Boolean,
@@ -88,12 +94,6 @@ export default defineComponent({
                 setTimeout(() => {
                     return window.location.href = '/login'
                 }, 1000)
-            }
-
-            const auth = {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem('token')}`
-                }
             }
 
             const body = {
