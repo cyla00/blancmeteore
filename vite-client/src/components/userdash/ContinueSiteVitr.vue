@@ -17,39 +17,35 @@ export default defineComponent({
     },
     methods: {
         async continueOrder(){
-            const order_data = JSON.parse(localStorage.getItem('graphisme'))
-
+            const order_data = JSON.parse(localStorage.getItem('site-vitrine'))
+            
             const body = {
-                newLogo: order_data.logo,
-                newCarteVisite: order_data.Cartes_visite,
-                newFlyer: order_data.Flyer,
-                newDeplyant: order_data.Depliant,
-                newDeclinaisonResaux: order_data.declinaison_resaux_sociaux,
-                newIdGraphComplete: order_data.complete,
-                questDejaIdGraph: order_data.have_id,
+                oldSiteUrl: order_data.site_url,
+                questDejaSite: order_data.have_site,
                 questSecteurActivite: order_data.sector,
-                questObjectiveCreation: `${order_data.objective} - ${order_data.objective_autres}`,
-                oldlogo: order_data.oldLogo,
+                questObjectiveSite: order_data.objectives,
+                questPossedezIdGraph: order_data.id_graph,
+                questNumPages: order_data.n_pages,
+                newMoreInfo: order_data.infos,
             }
 
             const auth = {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
-                    "Content-Type": "multipart/form-data",
                 }
             }
 
             await axios.post('http://localhost:3000/api/jwt-check', {}, auth).then(async (res) => {
                 if(res.status === 200){
-                    await axios.post('http://localhost:3000/api/create-id-graphic', body, auth).then((res) => {
+                    await axios.post('http://localhost:3000/api/create-site-vitrine', body, auth).then((res) => {
                         if(res.status === 200){
                             this.show = true
                             this.succMsg = res.data.SuccMsg
-                            localStorage.removeItem('graphisme')
+                            localStorage.removeItem('site-vitrine')
                             return window.location.reload()
                         }
                     }).catch((e) => {
-                        localStorage.removeItem('order')
+                        localStorage.removeItem('site-vitrine')
                         this.show = true
                         this.errMsg = e.response.data.ErrMsg
                         setTimeout(() => {
@@ -68,13 +64,13 @@ export default defineComponent({
         removeOrder(){
             if(confirm('remove order?')){
                 this.showCheckout = false
-                return localStorage.removeItem('graphisme')
+                return localStorage.removeItem('site-vitrine')
             }
             return
         }
     },
     created(){
-        if(localStorage.getItem('graphisme')){
+        if(localStorage.getItem('site-vitrine')){
             this.showCheckout = true
         }
     }

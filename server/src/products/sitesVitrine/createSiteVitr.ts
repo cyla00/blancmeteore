@@ -13,6 +13,7 @@ createSiteVitrine.post('/api/create-site-vitrine', async (ctx) => {
     const date = new Date()
     const body:any = await ctx.request.body()
     const bodyVal = await body.value
+    
 
     const siteVitrines = db.collection<SiteVitrineSchema>("sites_vitrine")
     const users = db.collection<UserSchema>('users')

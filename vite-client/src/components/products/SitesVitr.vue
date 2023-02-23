@@ -1,20 +1,104 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
+import axios from 'axios'
+import Popup from '../Popup.vue'
 
 export default defineComponent({
     props: {
         open: Boolean,
     },
+    components: {
+        Popup,
+    },
     data() {
         return{
             have_site: '',
             site_url: '',
+            sector: '',
             objectives: '',
             id_graph: '',
             n_pages: '',
             infos: '',
+            show: false,
+            errMsg: '',
+            succMsg: '',
+            emptyMsg: 'remplir avant de continuer',
+            logMsg: 'connectez-vous avant de continuer',
         }
     },
+    methods: {
+        next1(){
+            if(this.have_site === '' || this.objectives === '' || this.sector === ''){
+                this.show = true
+                return this.errMsg = this.emptyMsg
+            }
+            document.getElementById('2').scrollIntoView()
+        },
+        async sendOrder(){
+            if(this.id_graph === '' || this.n_pages === ''){
+                this.show = true
+                return this.errMsg = this.emptyMsg
+            }
+
+            if(!localStorage.getItem('token')){
+                this.show = true
+                this.errMsg = this.logMsg
+                const obj = {
+                    have_site: this.have_site,
+                    site_url: this.site_url,
+                    sector: this.sector,
+                    objectives: this.objectives,
+                    id_graph: this.id_graph,
+                    n_pages: this.n_pages,
+                    infos: this.infos,
+                }
+                localStorage.setItem('site-vitrine', JSON.stringify(obj))
+                setTimeout(() => {
+                    return window.location.href = '/login'
+                }, 1000)
+            }
+
+            const auth = {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                }
+            }
+
+            const body = {
+                oldSiteUrl: this.site_url,
+                questDejaSite: this.have_site,
+                questSecteurActivite: this.sector,
+                questObjectiveSite: this.objectives,
+                questPossedezIdGraph: this.id_graph,
+                questNumPages: this.n_pages,
+                newMoreInfo: this.infos,
+            }
+
+            await axios.post('http://localhost:3000/api/jwt-check', body, auth).then(async (res) => {
+                if(res.status === 200){
+                    await axios.post('http://localhost:3000/api/create-site-vitrine', body, auth).then((res) => {
+                        if(res.status === 200){
+                            this.show = true
+                            this.succMsg = res.data.SuccMsg
+                            return window.location.reload()
+                        }
+                    }).catch((e) => {
+                        this.show = true
+                        this.errMsg = e.response.data.ErrMsg
+                        setTimeout(() => {
+                            return window.location.reload()
+                        }, 1000)
+                    })
+                }
+            }).catch((e) => {
+                this.show = true
+                this.errMsg = this.logMsg
+                setTimeout(() => {
+                    return window.location.href = '/login'
+                }, 1000)
+            })
+        }
+    }
 })
 </script>
 
@@ -22,9 +106,9 @@ export default defineComponent({
     <Teleport to="body">
         <Transition>
         <div class="wrapper" v-if="open">
+            <Popup v-model:Show="show" v-model:ErrMsg="errMsg" v-model:SuccMsg="succMsg" />
             <button class="close-btn" @click="this.$emit('update:open', false)"><i class='bx bx-x'></i></button>
             <div class="form-wrapper">
-
 
                 <div class="quest" id="1">
                     <div class="inner-quest">
@@ -46,7 +130,7 @@ export default defineComponent({
 
                         <div>
                             <label for="">votre secteur d'activite</label>
-                            <input type="text" name="" id="">
+                            <input type="text" v-model="sector">
                         </div>
                             
                         <h3>objectifs</h3>
@@ -64,9 +148,8 @@ export default defineComponent({
                             <input type="radio" name="connaitre" value="me faire connaitre" v-model="objectives">
                             <label for="connaitre">me faire connaitre</label>
                         </div>
-                        
+                        <button @click="next1">next</button> 
                     </div>
-                    <a href="#2">next</a>
                 </div>
                 
                 <div class="quest" id="2">
@@ -108,9 +191,8 @@ export default defineComponent({
                         <div>
                             <textarea name="" id="" cols="30" rows="10" placeholder="autre infos a transmettre" v-model="infos"></textarea>
                         </div>
-
+                        <button @click="sendOrder">send</button>
                     </div>
-                    <a href="#">send</a>
                 </div>
 
             </div>
