@@ -1,4 +1,5 @@
-<script>
+<script lang="ts">
+
 import { defineComponent, watch } from 'vue'
 export default defineComponent({
     name: 'Popup',

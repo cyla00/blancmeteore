@@ -32,7 +32,7 @@ export default defineComponent({
                 this.show = true
                 return this.errMsg = this.emptyMsg
             }
-            document.getElementById('2').scrollIntoView()
+            document.getElementById('2')?.scrollIntoView()
         },
         async sendOrder(){
             if(this.id_graph === '' || this.n_pages === ''){
@@ -74,7 +74,7 @@ export default defineComponent({
                 newMoreInfo: this.infos,
             }
 
-            await axios.post('http://localhost:3000/api/jwt-check', body, auth).then(async (res) => {
+            await axios.post('http://localhost:3000/api/jwt-check', {}, auth).then(async (res) => {
                 if(res.status === 200){
                     await axios.post('http://localhost:3000/api/create-site-vitrine', body, auth).then((res) => {
                         if(res.status === 200){
