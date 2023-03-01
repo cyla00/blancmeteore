@@ -21,7 +21,7 @@ fetchOrders.post('/api/get-orders', async (ctx) => {
         ctx.response.status = Status.BadRequest
         return ctx.response.body = {
             ErrMsg: 'Erreur'
-        }
+        } 
     }
 
     const all:any = []

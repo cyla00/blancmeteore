@@ -1,19 +1,51 @@
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, ref } from 'vue'
+import { useElementVisibility } from '@vueuse/core'
 
 export default defineComponent({
     name: 'Sec4',
     data(){
         return{
-            insta: '+ 5000',
-            face: '+ 2500',
-            creations: '270',
-            video: '85'
+            insta: 5000,
+            face: 2500,
+            creations: 300,
+            video: 95,
+            finished: false,
+        }
+    },
+    setup(){
+        const target = ref(null)
+        const isVisible = useElementVisibility(target)
+
+        return {
+            target,
+            isVisible,
+        }
+    },
+    methods: {
+        theFormat(number:number) {
+            return number.toFixed(2);
+        },
+        completed() {
+            console.log('Animation ends!');
+        },
+    },
+    watch: {
+        isVisible(event){
+            if(event && !this.finished){
+                this.$refs.instaCounter?.start()
+                this.$refs.faceCounter?.start()
+                this.$refs.creaCounter?.start()
+                this.$refs.videoCounter?.start()       
+            }
         }
     }
-    
 })
 </script>
+
+
+
+
 
 <template>
     <section>
@@ -28,24 +60,28 @@ export default defineComponent({
         </div>
 
         <h1 class="title">{{$t('home.sec4.title')}}</h1>
-        <div class="stats-wrapper">
+        <div class="stats-wrapper" ref="target">
             <div class="card">
-                <h4>{{insta}}</h4>
+                <span class="number">+</span><vue3-autocounter class="number" ref='instaCounter' :startAmount='0' separator='' :endAmount='insta' :duration='2' :autoinit='false' @finished="finished = true"/>
+                <i class='bx bxl-instagram-alt bx-md'></i>
                 <p>{{$t('home.sec4.insta')}}</p>
             </div>
 
             <div class="card">
-                <h4>{{face}}</h4>
+                <span class="number">+</span><vue3-autocounter class="number" ref='faceCounter' :startAmount='0' separator='' :endAmount='face' :duration='2' :autoinit='false' @finished="finished = true"/>
+                <i class='bx bxl-facebook-circle bx-md'></i>
                 <p>{{$t('home.sec4.facebook')}}</p>
             </div>
 
             <div class="card">
-                <h4>{{creations}}</h4>
+                <span class="number">+</span><vue3-autocounter class="number" ref='creaCounter' :startAmount='0' separator='' :endAmount='creations' :duration='2' :autoinit='false' @finished="finished = true"/>
+                <i class='bx bxs-palette bx-md'></i>
                 <p>{{$t('home.sec4.crea')}}</p>
             </div>
 
             <div class="card">
-                <h4>{{video}}</h4>
+                <span class="number">+</span><vue3-autocounter class="number" ref='videoCounter' :startAmount='0' separator='' :endAmount='video' :duration='2' :autoinit='false' @finished="finished = true"/>
+                <i class='bx bxs-videos bx-md'></i>
                 <p>{{$t('home.sec4.video')}}</p>
             </div>
         </div>
@@ -99,7 +135,7 @@ section{
     text-align: start;
 }
 
-.card h4{
+.number{
     font-size: 42px;
     margin: 0 auto;
 }

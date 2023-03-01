@@ -14,6 +14,7 @@ fetchUser.post('/api/get-user', async (ctx) => {
     const body:any = await ctx.request.body()
     const bodyVal = await body.value
     const users = db.collection<UserSchema>("users")
+    
 
     if(jwtDecode(token).role !== 'commercial' && jwtDecode(token).role !== 'creator'){
         ctx.response.status = Status.BadRequest

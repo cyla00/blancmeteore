@@ -26,6 +26,7 @@ export default defineComponent({
             li_url: '',
             errMsg: '',
             succMsg: '',
+            show: false,
             emptyMsg: 'remplir avant de continuer',
             logMsg: 'connectez-vous avant de continuer',
             infoSuppl: '',
@@ -37,14 +38,14 @@ export default defineComponent({
                 this.show = true
                 return this.errMsg = this.emptyMsg
             }
-            document.getElementById('2').scrollIntoView()
+            document.getElementById('2')?.scrollIntoView()
         },
         next2(){
             if(this.fb_url === '' && this.ig_url === '' && this.tk_url === '' && this.li_url === ''){
                 this.show = true
                 return this.errMsg = this.emptyMsg
             }
-            document.getElementById('3').scrollIntoView()
+            document.getElementById('3')?.scrollIntoView()
         },
         async checkout(){
             if(!localStorage.getItem('token')){

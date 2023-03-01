@@ -4,6 +4,7 @@ import ContinueOrder from '../components/userdash/ContinueOrder.vue'
 import ContinueGraphOrder from '../components/userdash/ContinueGraphOrder.vue'
 import ContinueSiteVitr from '../components/userdash/ContinueSiteVitr.vue'
 import ContinueSiteMesure from '../components/userdash/ContinueSiteMesure.vue'
+import ContinueSiteEcom from '../components/userdash/ContinueSiteEcom.vue'
 
 export default defineComponent({
     name: 'UserDash',
@@ -12,6 +13,7 @@ export default defineComponent({
         ContinueGraphOrder,
         ContinueSiteVitr,
         ContinueSiteMesure,
+        ContinueSiteEcom,
     }
 })
 </script>
@@ -22,6 +24,7 @@ export default defineComponent({
         <ContinueGraphOrder/>
         <ContinueSiteVitr/>
         <ContinueSiteMesure/>
+        <ContinueSiteEcom/>
     </section>
 </template>
 

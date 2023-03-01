@@ -42,71 +42,72 @@ createSubscription.post('/api/create-subscription', async (ctx) => {
 
         const checkSub:any = await subscriptions.findOne({customerId: jwtDecode(token).id})
         
-        if(checkSub && checkSub.type !== 'audit'){
+        if(checkSub && bodyVal.type !== 'audit'){
                 ctx.response.status = Status.BadRequest
                 return ctx.response.body = {
                         ErrMsg: 'Une subscription existe'
                 }
         }
+        else{
+            const new_id:string = crypto.randomUUID()
 
-        const new_id:string = crypto.randomUUID()
-
-        await subscriptions.insertOne({
-                id: new_id,
-                customerId: jwtDecode(token).id,
-                price: 0,
-                type: bodyVal.type,
-                category: 'subscription',
-                questDejaIdGraph: bodyVal.questDejaIdGraph,
-                questSecteurActivite: bodyVal.questSecteurActivite,
-                questObjectiveCreation: bodyVal.questObjectiveCreation,
-                instagram: bodyVal.instagram,
-                facebook: bodyVal.facebook,
-                linkedin: bodyVal.linkedin,
-                tiktok: bodyVal.tiktok,
-                linkInstagram: bodyVal.linkInstagram,
-                linkFacebook: bodyVal.linkFacebook,
-                linkLinkedin: bodyVal.linkLinkedin,
-                linkTiktok: bodyVal.linkTiktok,
-                infoSuppl: bodyVal.infoSuppl,
-                createdAt: `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}`,
-                isActive: true,
-                expirationDate: '',
-        }).then(async (doc) => {
-
-                if(bodyVal.type === 'audit'){
-                    await users.updateOne({id: jwtDecode(token).id}, {$set: {auditId: new_id}}).then((doc) => {
-                        ctx.response.status = Status.OK
-                        return ctx.response.body = {
-                                SuccMsg: 'Abonnement créé avec succès'
-                        }  
-                    }).catch((_e) => {
-                            ctx.response.status = Status.InternalServerError
+            await subscriptions.insertOne({
+                    id: new_id,
+                    customerId: jwtDecode(token).id,
+                    price: 0,
+                    type: bodyVal.type,
+                    category: 'subscription',
+                    questDejaIdGraph: bodyVal.questDejaIdGraph,
+                    questSecteurActivite: bodyVal.questSecteurActivite,
+                    questObjectiveCreation: bodyVal.questObjectiveCreation,
+                    instagram: bodyVal.instagram,
+                    facebook: bodyVal.facebook,
+                    linkedin: bodyVal.linkedin,
+                    tiktok: bodyVal.tiktok,
+                    linkInstagram: bodyVal.linkInstagram,
+                    linkFacebook: bodyVal.linkFacebook,
+                    linkLinkedin: bodyVal.linkLinkedin,
+                    linkTiktok: bodyVal.linkTiktok,
+                    infoSuppl: bodyVal.infoSuppl,
+                    createdAt: `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}`,
+                    isActive: true,
+                    expirationDate: '',
+            }).then(async (doc) => {
+    
+                    if(bodyVal.type === 'audit'){
+                        await users.updateOne({id: jwtDecode(token).id}, {$set: {auditId: new_id}}).then((doc) => {
+                            ctx.response.status = Status.OK
                             return ctx.response.body = {
-                                    ErrMsg: 'Erreur'
+                                    SuccMsg: 'Abonnement créé avec succès'
                             }  
-                    })
-                }
-                else{
-                    await users.updateOne({id: jwtDecode(token).id}, {$set: {subscriptionId: new_id}}).then((doc) => {
-                        ctx.response.status = Status.OK
-                        return ctx.response.body = {
-                                SuccMsg: 'Abonnement créé avec succès'
-                        }  
-                    }).catch((_e) => {
-                            ctx.response.status = Status.InternalServerError
+                        }).catch((_e) => {
+                                ctx.response.status = Status.InternalServerError
+                                return ctx.response.body = {
+                                        ErrMsg: 'Erreur'
+                                }  
+                        })
+                    }
+                    else{
+                        await users.updateOne({id: jwtDecode(token).id}, {$set: {subscriptionId: new_id}}).then((doc) => {
+                            ctx.response.status = Status.OK
                             return ctx.response.body = {
-                                    ErrMsg: 'Erreur'
+                                    SuccMsg: 'Abonnement créé avec succès'
                             }  
-                    })
-                }
+                        }).catch((_e) => {
+                                ctx.response.status = Status.InternalServerError
+                                return ctx.response.body = {
+                                        ErrMsg: 'Erreur'
+                                }  
+                        })
+                    }
+                    
+            }).catch((_e) => {
+                console.log(_e);
                 
-        }).catch((_e) => {
-			console.log(_e);
-			
-                ctx.response.status = Status.InternalServerError
-                return ctx.response.body = {
-                        ErrMsg: 'Erreur'
-                }  
-        })
+                    ctx.response.status = Status.InternalServerError
+                    return ctx.response.body = {
+                            ErrMsg: 'Erreur'
+                    }  
+            })
+        }
 })
