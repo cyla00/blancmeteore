@@ -60,7 +60,8 @@ export default defineComponent({
         <button @click="this.$emit('update:openModal', false)">x</button>
         <div class="data-wrapper">
             <h3 class="title">{{ order_id?.type }}</h3>
-
+            <p>{{ order_id?.createdAt }}</p>
+            <p>{{ order_id?.status }}</p>
             <table>
                 <tr>
                     <th>Prenom</th>
@@ -81,25 +82,28 @@ export default defineComponent({
                 </tr>
             </table>
 
-            <p><span class="sub-title">Secteur: </span> {{ order_id?.questSecteurActivite }}</p>
+            <p><span class="sub-title">Secteur d'activite: </span> {{ order_id?.questSecteurActivite }}</p>
+
+            <h3>identite graphique</h3>
             <p><span class="sub-title">Objectif: </span> {{ order_id?.questObjectiveCreation }}</p>
-            <p><span class="sub-title">Déjà un identite graphique: </span> {{ order_id?.questDejaIdGraph }}</p>
+            <p><span class="sub-title">Déjà une identite graphique: </span> {{ order_id?.questDejaIdGraph }}</p>
             <p class="sub-title" :class="{'no-graph': !order_id?.newLogo, 'yes-graph': order_id?.newLogo }"><span class="title">logo</span></p>
             <p class="sub-title" :class="{'no-graph': !order_id?.newFlyer, 'yes-graph': order_id?.newFlyer }"><span class="title">flyer</span></p>
             <p class="sub-title" :class="{'no-graph': !order_id?.newDeplyant, 'yes-graph': order_id?.newDeplyant }"><span class="title">deplyant</span></p>
             <p class="sub-title" :class="{'no-graph': !order_id?.newCarteVisite, 'yes-graph': order_id?.newCarteVisite }"><span class="title">carte visite</span></p>
             <p class="sub-title" :class="{'no-graph': !order_id?.newDeclinaisonResaux, 'yes-graph': order_id?.newDeclinaisonResaux }"><span class="title">declinaison resaux</span></p>
             <p class="sub-title" :class="{'no-graph': !order_id?.newIdGraphComplete, 'yes-graph': order_id?.newIdGraphComplete }"><span class="title">identite complete</span></p>
-            <!-- <p><span class="sub-title"></span> {{ order_id. }}</p>
-            <p><span class="sub-title"></span> {{ order_id. }}</p>
-            <p><span class="sub-title"></span> {{ order_id. }}</p>
-            <p><span class="sub-title"></span> {{ order_id. }}</p>
-            <p><span class="sub-title"></span> {{ order_id. }}</p>
-            <p><span class="sub-title"></span> {{ order_id. }}</p>
-            <p><span class="sub-title"></span> {{ order_id. }}</p>
-            <p><span class="sub-title"></span> {{ order_id. }}</p>
-            <p><span class="sub-title"></span> {{ order_id. }}</p>
-            <p><span class="sub-title"></span> {{ order_id. }}</p> -->
+            
+            <h3>creation sites</h3>
+            <p><span class="sub-title">Déjà un site</span> {{ order_id?.questDejaSite }}</p>
+            <p><span class="sub-title">url site existant</span> {{ order_id?.oldSiteUrl }}</p>
+            <p><span class="sub-title">Objectif</span> {{ order_id?.questObjectiveSite }}</p>
+            <p><span class="sub-title">Déjà une identite graphique:</span> {{ order_id?.questPossedezIdGraph }}</p>
+            <p><span class="sub-title">Num categories</span> {{ order_id?.questNumCategories }}</p>
+            <p><span class="sub-title">Num produits</span> {{ order_id?.questNumProducts }}</p>
+            <p><span class="sub-title">Num Pages</span> {{ order_id?.questNumPages }}</p>
+            <p><span class="sub-title">Num utilisateurs</span> {{ order_id?.questNumUsers }}</p>
+            <p><span class="sub-title">Autres infos</span> {{ order_id?.newMoreInfo }}</p>
         </div>
     
     </div>

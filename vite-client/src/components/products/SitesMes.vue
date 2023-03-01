@@ -47,7 +47,7 @@ export default defineComponent({
                     have_site: this.have_site,
                     sector: this.sector,
                     objectives: this.objectives,
-                    n_pages: this.n_users,
+                    n_users: this.n_users,
                     infos: this.infos,
                 }
                 localStorage.setItem('site-mesure', JSON.stringify(obj))
@@ -66,7 +66,7 @@ export default defineComponent({
                 questDejaSite: this.have_site,
                 questSecteurActivite: this.sector,
                 questObjectiveSite: this.objectives,
-                questNumPages: this.n_users,
+                questNumUsers: this.n_users,
                 newMoreInfo: this.infos,
             }
 
@@ -158,7 +158,7 @@ export default defineComponent({
                         </div>
 
                         <div>
-                            <input type="radio" value="plus de 5" v-model="n_users">
+                            <input type="radio" value="plus de 40" v-model="n_users">
                             <label for="">plus de 40</label>
                         </div>
 
