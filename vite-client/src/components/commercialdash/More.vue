@@ -1,12 +1,22 @@
 <script lang="ts">
 import axios from 'axios'
 import { defineComponent, watch } from 'vue'
+import Popup from '../Popup.vue'
+
+const auth = {
+    headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`
+    }
+}
 
 export default defineComponent({
     props: {
         openModal: Boolean,
         order_id: Object,
 
+    },
+    components: {
+        Popup,
     },
     data(){
         return{
@@ -16,6 +26,9 @@ export default defineComponent({
             companyName: '',
             siret: '',
             tel: '',
+            show: false,
+            errMsg: '',
+            succMsg: '',
         }
     },
     watch: {
@@ -51,17 +64,113 @@ export default defineComponent({
                 this.tel = ''
             }
         }
+    },
+    methods: {
+        async setInProgress(){
+
+            const body = {
+                order_id: this.order_id?.id
+            }
+
+            if(confirm('sur de vouloir continuer?')){
+                await axios.post('http://localhost:3000/api/order-in-progress', body, auth).then((res) => {
+                    console.log(res.status)
+                    this.show = true
+                    this.succMsg = res.data.SuccMsg
+                    setTimeout(() => {
+                        return window.location.reload()
+                    }, 1500)
+                }).catch((e) => {
+                    console.log(e)
+                    this.show = true
+                    this.errMsg = e.response.data.ErrMsg
+                })
+            }
+            return
+            
+        },
+        async setSentProposition(){
+            const body = {
+                order_id: this.order_id?.id
+            }
+
+            if(confirm('sur de vouloir continuer?')){
+                await axios.post('http://localhost:3000/api/proposition-sent', body, auth).then((res) => {
+                    console.log(res.status)
+                    this.show = true
+                    this.succMsg = res.data.SuccMsg
+                    setTimeout(() => {
+                        return window.location.reload()
+                    }, 1500)
+                }).catch((e) => {
+                    console.log(e)
+                    this.show = true
+                    this.errMsg = e.response.data.ErrMsg
+                }) 
+            }
+            return
+            
+        },
+        async setPropositionSigned(){
+            const body = {
+                order_id: this.order_id?.id
+            }
+
+            if(confirm('sur de vouloir continuer?')){
+                await axios.post('http://localhost:3000/api/proposition-signed', body, auth).then((res) => {
+                    console.log(res.status)
+                    this.show = true
+                    this.succMsg = res.data.SuccMsg
+                    setTimeout(() => {
+                        return window.location.reload()
+                    }, 1500)
+                }).catch((e) => {
+                    console.log(e)
+                    this.show = true
+                    this.errMsg = e.response.data.ErrMsg
+                })
+            }
+            return
+            
+        },
+        async setCompleted(){
+            const body = {
+                order_id: this.order_id?.id
+            }
+            
+            if(confirm('sur de vouloir continuer?')){
+                await axios.post('http://localhost:3000/api/order-completed', body, auth).then((res) => {
+                    console.log(res.status)
+                    this.show = true
+                    this.succMsg = res.data.SuccMsg
+                    setTimeout(() => {
+                        return window.location.reload()
+                    }, 1500)
+                }).catch((e) => {
+                    console.log(e)
+                    this.show = true
+                    this.errMsg = e.response.data.ErrMsg
+                })
+            }
+            return
+        }
     }
 })
 </script>
 
 <template>
     <div class="modal" v-if="openModal">
+        <Popup v-model:Show="show" v-model:ErrMsg="errMsg" v-model:SuccMsg="succMsg" />
+        <button @click="setSentProposition">Proposition envoye</button>
+        <button @click="setInProgress">En cours</button>
+        <button @click="setPropositionSigned">Proposition signe</button>
+        <button @click="setCompleted">Complete</button>
         <button @click="this.$emit('update:openModal', false)">x</button>
+        
         <div class="data-wrapper">
             <h3 class="title">{{ order_id?.type }}</h3>
             <p>{{ order_id?.createdAt }}</p>
-            <p>{{ order_id?.status }}</p>
+            <p>{{ order_id?.status }}</p> 
             <table>
                 <tr>
                     <th>Prenom</th>
