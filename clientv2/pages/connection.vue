@@ -97,8 +97,46 @@ const submit = async () => {
 
     //registration manager
     if(switcher.value === 'registration'){
-        console.log('lol');
+
+        if(reg_first_name.value === '' || reg_last_name.value === '' || reg_email.value === '' || reg_password.value === '' || reg_repeat_password.value === ''){
+            Show.value = true
+            return ErrMsg.value = 'Remplir tous les champs'
+        }
+
+        if(reg_password.value !== reg_repeat_password.value){
+            Show.value = true
+            return ErrMsg.value = 'Les mot de passe ne correspondent pas'
+        }
+
+        const passw = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/
+        if(!reg_password.value?.match(passw)){
+            Show.value = true
+            return ErrMsg.value = 'Mot de passe faible'
+        }
+
         
+
+        
+        
+        const body = {
+            'email': reg_email.value,
+            'password': reg_password.value,
+            'firstname': reg_first_name.value,
+            'lastname': reg_last_name.value
+        }
+
+        await axios.post('http://localhost:3000/api/registration', body, {}).then((res) => {
+            if(res.status === 200){
+                Show.value = true
+                SuccMsg.value = res.data.SuccMsg
+                setTimeout(() => {
+                    return window.location.reload()
+                }, 2000)
+            }
+        }).catch((e) => {
+            Show.value = true
+            return ErrMsg.value = e.response.data.ErrMsg
+        })
     }
 }
 
@@ -132,7 +170,7 @@ const submit = async () => {
 
             <div v-if="switcher === 'connection'" class="m-auto bg-c-light grid grid-cols-2 rounded-b-lg duration-200 max-lg:grid-cols-1">
                 <div class="bg-c-dark py-5 rounded-bl-lg duration-200 max-lg:hidden">
-                    <img class="w-96 m-auto duration-200" src="/assets/login.png" alt="">
+                    <img class="w-96 m-auto" src="/assets/log.png" alt="">
                 </div>
 
                 <div class="m-auto w-9/12 max-lg:my-10">
@@ -155,11 +193,11 @@ const submit = async () => {
 
             <div v-if="switcher === 'registration'" class="m-auto bg-c-light grid grid-cols-2 rounded-b-lg duration-200 max-lg:grid-cols-1">
                 <div class="bg-c-dark py-5 rounded-bl-lg max-lg:hidden">
-                    <img class="w-96 m-auto duration-200" src="/assets/login.png" alt="">
+                    <img class="w-96 m-auto" src="/assets/sign.png" alt="">
                 </div>
 
                 <div class="m-auto w-9/12 duration-200 max-lg:my-10">
-                    <h3 class="bg-clip-text capitalize text-xl text-transparent bg-gradient-to-bl from-blue-dark to-blue-light font-bold mb-5">inscrivez-vous pour accéder</h3>
+                    <h3 class="bg-clip-text capitalize text-xl text-transparent bg-gradient-to-bl from-blue-dark to-blue-light font-bold mb-5">inscrivez-vous</h3>
                     
                     <div class="w-full flex flex-col mb-5">
                         <input class="duration-200 focus:outline-cyan-500 text-sm py-2 px-5 border outline-none border-c-dark rounded-full" type="text" v-model="reg_first_name" placeholder="prénom">
@@ -174,7 +212,7 @@ const submit = async () => {
                     </div>
 
                     <div class="w-full flex flex-col mb-5">
-                        <input class="duration-200 focus:outline-cyan-500 text-sm py-2 px-5 border outline-none border-c-dark rounded-full" type="password" v-model="reg_password" placeholder="mot de passe">
+                        <input class="duration-200 focus:outline-cyan-500 text-sm py-2 px-5 border outline-none border-c-dark rounded-full" type="password" v-model="reg_password" placeholder="mot de passe (Aa + 1-9)">
                     </div>
 
                     <div class="w-full flex flex-col mb-5">
@@ -186,7 +224,7 @@ const submit = async () => {
                     </div>
                     
                     <div class="flex justify-center">
-                        <button class="my-2 duration-200 desktop-btn capitalize bg-blue-light py-2 px-10 rounded-full text-c-light" @click="submit">register</button>
+                        <button class="my-2 duration-200 desktop-btn capitalize bg-blue-light py-2 px-10 rounded-full text-c-light" @click="submit">registration</button>
                     </div>
                     
                 </div>
