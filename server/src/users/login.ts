@@ -26,7 +26,7 @@ login.post('/api/login', async (ctx) => {
         if(userCheck === undefined) {
             ctx.response.status = Status.Unauthorized
             return ctx.response.body = {
-                ErrMsg: `Données incorrectes`
+                ErrMsg: `Informations d'identification incorrectes`
             }
         }
 

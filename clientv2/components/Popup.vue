@@ -19,7 +19,7 @@ watch(() => props, () => {
             emit("update:Show", false)
             emit("update:ErrMsg", '')
             emit("update:SuccMsg", '')
-        }, 3000)
+        }, 2000)
     }
 }, { deep: true })
 
@@ -29,7 +29,7 @@ watch(() => props, () => {
 <template>
 <Teleport to="body">
 <Transition name="slide-fade">
-    <div class="wrapper fixed left-1/2 -translate-x-1/2 bottom-5 z-50 text-base font-semibold px-10 py-5 text-c-dark rounded-md w-96 max-md:text-sm" 
+    <div class="wrapper fixed left-1/2 -translate-x-1/2 bottom-5 z-50 text-base font-semibold px-10 py-5 text-c-dark rounded-md min-w-96 max-md:text-sm max-md:min-w-full" 
     v-if="Show" :class="{'error-wrapper': ErrMsg, 'success-wrapper': SuccMsg}">
         <p v-if="ErrMsg"><i class='bx bxs-error-alt align-middle text-xl max-md:text-sm'></i> {{ErrMsg}}</p>
         <p v-if="SuccMsg"><i class='bx bxs-check-circle align-middle text-xl max-md:text-sm'></i> {{SuccMsg}}</p>

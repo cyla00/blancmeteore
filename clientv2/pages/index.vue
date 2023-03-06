@@ -154,8 +154,6 @@ watch(isVisible, (event) => {
             </div>
         </section>
 
-        <v-divider class="border-opacity-100" color="info"></v-divider>
-
         <section class="bg-c-light py-20">
             <div class="py-20">
                 equipe

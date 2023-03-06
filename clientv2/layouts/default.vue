@@ -1,4 +1,8 @@
 <script setup lang="ts">
+import { createDOMCompilerError } from '@vue/compiler-dom';
+import axios from 'axios'
+import jwt_decode from "jwt-decode"
+
 let isLogged = ref<boolean>(false)
 let mobileNav = ref<boolean>(false)
 let scrollPosition = ref<boolean>(false)
@@ -29,12 +33,55 @@ const logout = async () => {
 }
 
 window.addEventListener('scroll', updateScroll)
+
+onUpdated(async () => {
+    if(localStorage.getItem('token')){
+        const auth = {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+            }
+        }
+
+        await axios.post('http://localhost:3000/api/jwt-check', {}, auth).then((res) => {
+            if(res.status === 200) {
+                const token_role:any = jwt_decode(localStorage.getItem('token'))
+                return isLogged.value = true
+            }
+        }).catch(async (_err) => {
+            localStorage.clear()
+            isLogged.value = false
+            await navigateTo({ path: '/connection' })
+        })
+    }
+})
+
+onMounted(async () => {
+    if(localStorage.getItem('token')){
+        const auth = {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+            }
+        }
+
+        await axios.post('http://localhost:3000/api/jwt-check', {}, auth).then((res) => {
+            if(res.status === 200) {
+                const token_role:any = jwt_decode(localStorage.getItem('token'))
+                return isLogged.value = true
+            }
+        }).catch(async (_err) => {
+            localStorage.clear()
+            isLogged.value = false
+            await navigateTo({ path: '/connection' })
+        })
+    }
+})
+
 </script>
 
 <template>
     <div class="">
         <header class="text-base sticky top-0 z-40">
-            <nav class="bg-opaque-light backdrop-blur-md max-lg:hidden mx-5 my-5 grid grid-flow-col py-2 px-10 rounded-full duration-75 ease-linear" :class="{'scrolled-nav': scrollPosition}">
+            <nav class="bg-opaque-light backdrop-blur-md max-lg:hidden mx-5 my-5 grid grid-flow-col py-2 px-10 duration-100 rounded-full ease-linear" :class="{'scrolled-nav': scrollPosition}">
                 <div class="">
                     <NuxtLink to="/"><img class="w-32 duration-200 desktop-btn" src="/assets/logo.png" alt=""></NuxtLink>
                 </div>

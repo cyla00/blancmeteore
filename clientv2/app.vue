@@ -24,7 +24,7 @@ body{
     margin: 0;
     padding: 0;
     font-family: Poppins;
-    background: linear-gradient(to left top, #145277, #046989, #098198, #2799a3, #49b0aa);
+    background: linear-gradient(to left top, #145277, #046989, #098198, #2799a3, #49b0aa) no-repeat;
 }
 i {
 	vertical-align: middle;
