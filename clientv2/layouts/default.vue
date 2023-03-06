@@ -33,7 +33,7 @@ window.addEventListener('scroll', updateScroll)
 
 <template>
     <div class="">
-        <header class="text-base sticky top-0 z-50">
+        <header class="text-base sticky top-0 z-40">
             <nav class="bg-opaque-light backdrop-blur-md max-lg:hidden mx-5 my-5 grid grid-flow-col py-2 px-10 rounded-full duration-75 ease-linear" :class="{'scrolled-nav': scrollPosition}">
                 <div class="">
                     <NuxtLink to="/"><img class="w-32 duration-200 desktop-btn" src="/assets/logo.png" alt=""></NuxtLink>

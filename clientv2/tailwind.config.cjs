@@ -15,9 +15,11 @@ module.exports = {
             },
             width: {
                 'card-w': '300px',
+                'connection-card': '1000px',
             },
             height: {
                 'vh85': '85vh',
+                'vh90': '90vh',
                 'card-h': '500px',
             },
             maxWidth: {

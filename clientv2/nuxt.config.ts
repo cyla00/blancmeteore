@@ -1,4 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+
 export default defineNuxtConfig({
     ssr: false,
     app: {
@@ -35,6 +36,6 @@ export default defineNuxtConfig({
         '@vueuse/nuxt',
     ],
     components: [
-        'vue3-autocounter'
-    ]
+        'vue3-autocounter',
+    ],
 })

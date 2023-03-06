@@ -41,10 +41,11 @@ watch(isVisible, (event) => {
     <main class="">
         <section class="">
             <div class="grid grid-flow-col bg-opaque-light mx-5 my-5 backdrop-blur-md rounded-3xl p-10 h-vh85 text-c-dark max-lg:grid-flow-row">
+
                 <div class="m-auto max-sm:text-center">
-                        <p class="capitalize text-sm font-bold text-blue-dark max-lg:text-xs">la communication accessible a tous</p>
-                        <h1 class="uppercase text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-bl from-blue-dark to-blue-light max-lg:text-4xl max-sm:text-3xl">blanc meteore</h1>
-                        <h2 class="capitalize text-2xl font-semibold max-lg:text-xl max-sm:text-sm">agence de communication, design <br> & developpement innovante.</h2>
+                    <p class="capitalize text-sm font-bold text-blue-dark max-lg:text-xs">la communication accessible a tous</p>
+                    <h1 class="uppercase text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-bl from-blue-dark to-blue-light max-lg:text-4xl max-sm:text-3xl">blanc meteore</h1>
+                    <h2 class="capitalize text-2xl font-semibold max-lg:text-xl max-sm:text-sm">agence de communication, design <br> & developpement innovante.</h2>
                 </div>
 
                 <div class="m-auto">
@@ -152,6 +153,8 @@ watch(isVisible, (event) => {
                 </div>
             </div>
         </section>
+
+        <v-divider class="border-opacity-100" color="info"></v-divider>
 
         <section class="bg-c-light py-20">
             <div class="py-20">
