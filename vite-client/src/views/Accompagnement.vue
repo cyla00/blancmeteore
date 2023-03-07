@@ -31,7 +31,7 @@ export default defineComponent({
         <PlanC v-model:open="openC"/>
         <Audit v-model:open="openAudit"/>
         <div class="card">
-            <h3>plan A "lancement"</h3>
+            <h3>plan "lancement"</h3>
             <button @click="this.openA = true">demarrer</button>
         </div>
 
