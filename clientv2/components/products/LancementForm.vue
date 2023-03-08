@@ -170,7 +170,6 @@ const submit = async () => {
 
             <Transition name="card">
                 <div v-if="open2" class="">
-                    <button @click="back1">retour</button>
                     <h3>objectifs</h3>
                     <div>
                         <input type="radio" name="lancer" value="lancer mon activite" v-model="objectives">

@@ -12,6 +12,9 @@ module.exports = {
                 'c-red': '#FF605C',
                 'c-green': '#37D697',
                 'c-yellow': '#FFC12B',
+                'c-cont': '#d7dadd',
+                'c-env': '#7a8793',
+                'c-sign': '#09aeae',
             },
             width: {
                 'card-w': '300px',
