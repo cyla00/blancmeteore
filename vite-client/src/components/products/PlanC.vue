@@ -58,7 +58,7 @@ export default defineComponent({
                 this.show = true
                 return this.errMsg = this.emptyMsg
             }
-            document.getElementById('5').scrollIntoView()
+            document.getElementById('5').scrollIntoView() 
         },
         async checkout(){
             if(this.fb_url === '' && this.ig_url === '' && this.tk_url === '' && this.li_url === ''){

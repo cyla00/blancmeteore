@@ -45,7 +45,7 @@ createSubscription.post('/api/create-subscription', async (ctx) => {
         if(checkSub && bodyVal.type !== 'audit'){
                 ctx.response.status = Status.BadRequest
                 return ctx.response.body = {
-                        ErrMsg: 'Une subscription existe'
+                        ErrMsg: 'Vous êtes déjà abonné'
                 }
         }
         else{
@@ -78,7 +78,7 @@ createSubscription.post('/api/create-subscription', async (ctx) => {
                         await users.updateOne({id: jwtDecode(token).id}, {$set: {auditId: new_id}}).then((doc) => {
                             ctx.response.status = Status.OK
                             return ctx.response.body = {
-                                    SuccMsg: 'Abonnement créé avec succès'
+                                    SuccMsg: 'Commande envoyé avec succès'
                             }  
                         }).catch((_e) => {
                                 ctx.response.status = Status.InternalServerError

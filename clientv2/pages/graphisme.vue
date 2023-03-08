@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import GraphForm from '@/components/products/GraphForm.vue'
 
 useHead({
     title: 'BlancMeteore | Graphisme',
@@ -10,10 +11,13 @@ useHead({
     ],
 })
 
+const showGraph = ref<boolean>(false)
+
 </script>
 
 <template>
     <main class="text-center mt-20 pb-20 h-vh90">
+        <GraphForm v-model:open="showGraph"/>
         <div class="m_auto text-c-light">   
                 <h2 class="font-bold uppercase max-sm:text-3xl text-4xl">créations graphiques</h2>
                 <h3 class="text-2xl font-semibold max-lg:text-xl max-sm:text-sm capitalize">des créations graphiques réalisées par des designers professionnels</h3>
@@ -25,7 +29,7 @@ useHead({
                     <img class="w-48 m-auto" src="/assets/acc.png" alt="service icon">
                     <p class="m-auto">courte description service</p>
                     <div class="m-auto">
-                        <button class="duration-200 desktop-btn capitalize bg-blue-light py-2 px-5 rounded-full text-c-light">choisir</button>
+                        <button class="duration-200 desktop-btn capitalize bg-blue-light py-2 px-5 rounded-full text-c-light" @click="showGraph = true">choisir</button>
                     </div>
                 </div>
         </div>

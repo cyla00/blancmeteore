@@ -90,7 +90,6 @@ const submit = async () => {
         }).catch((e) => {
             Show.value = true
             ErrMsg.value = e.response.data.ErrMsg
-            localStorage.clear()
             return
         })
     }
@@ -114,10 +113,6 @@ const submit = async () => {
             return ErrMsg.value = 'Mot de passe faible'
         }
 
-        
-
-        
-        
         const body = {
             'email': reg_email.value,
             'password': reg_password.value,
