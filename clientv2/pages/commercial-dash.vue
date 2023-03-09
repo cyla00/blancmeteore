@@ -3,11 +3,11 @@ import axios from 'axios'
 import Popup from '@/components/Popup.vue'
 import More from '@/components/commDash/More.vue'
 
-const toContact = ref<unknown>(undefined)
-const signedProposition = ref<unknown>(undefined)
-const sentProposition = ref<unknown>(undefined)
-const inProgress = ref<unknown>(undefined)
-const completed = ref<unknown>(undefined)
+const toContact = ref<Array<object>>([{}])
+const signedProposition = ref<Array<object>>([{}])
+const sentProposition = ref<Array<object>>([{}])
+const inProgress = ref<Array<object>>([{}])
+const completed = ref<Array<object>>([{}])
 const show = ref<boolean>(false)
 const errMsg = ref<string>('')
 const succMsg = ref<string>('')
@@ -17,8 +17,6 @@ const order_id = ref<object>({})
 
 
 const openCard = async (id:object) => {
-    console.log(toRaw(id));
-    
     order_id.value = Object(toRaw(id))
     openModal.value = true
 }
@@ -31,8 +29,7 @@ onMounted( async () => {
         }
     }
 
-    await axios.post('http://localhost:3000/api/get-orders', {}, auth).then((res) => {
-        console.log(res.data)
+    await axios.post('http://localhost:3000/api/get-orders', {}, auth).then(async (res) => {
         toContact.value = res.data.toContact
         signedProposition.value = res.data.signedProposition
         sentProposition.value = res.data.sentProposition
@@ -46,62 +43,77 @@ onMounted( async () => {
 </script>
 
 <template>
-    <main class="h-vh90 grid grid-flow-col text-center text-sm text-c-dark">
+    <main class="min-h-screen grid grid-flow-row text-center text-sm text-c-dark">
         <Popup v-model:Show="show" v-model:ErrMsg="errMsg" v-model:SuccMsg="succMsg" />
             <More v-model:openModal="openModal" :order_id="order_id"/>
-            <div class="overflow-scroll">
-                <h4 class="font-semibold text-base">a contacter</h4>
-                <div v-for="i in toContact" :key="i" class="bg-c-cont my-5 rounded-md w-3/4 m-auto">
-                    <h4 class="font-semibold">{{ i.type }}</h4>
-                    <p class="">{{ i.createdAt }}</p>
-                    <div class="">
-                        <button @click="openCard(i)" class="desktop-btn duration-200 capizalize text-c-light bg-blue-light py-2 px-5 rounded-full my-2">ouvrir</button>
+            <h4 class="font-semibold text-base my-2 capitalize text-c-light">a contacter</h4>
+            <div class="overflow-scroll flex flex-row">
+                <div class="flex flex-row px-5">
+                    <div v-for="i in toContact" :key="i" class="bg-c-cont m-5 rounded-md w-64 py-5">
+                        <h4 class="font-semibold">{{ i.type }}</h4>
+                        <p class="text-xs">{{ i.createdAt }}</p>
+                        <div class="">
+                            <button @click="openCard(i)" class="desktop-btn duration-200 capizalize text-c-light bg-blue-light py-2 px-5 rounded-full my-2">ouvrir</button>
+                        </div>
                     </div>
                 </div>
+                
             </div>
 
-            <div class="overflow-scroll">
-                <h4 class="font-semibold text-base">proposition envoyée</h4>
-                <div v-for="i in sentProposition" :key="i" class="bg-c-env my-5 rounded-md w-3/4 m-auto">
-                    <h4 class="font-semibold">{{ i.type }}</h4>
-                    <p class="">{{ i.createdAt }}</p>
-                    <div>
-                        <button @click="openCard(i)" class="desktop-btn duration-200 capizalize text-c-light bg-blue-light py-2 px-5 rounded-full my-2">ouvrir</button>
+            <h4 class="font-semibold text-base my-2 capitalize text-c-light">proposition envoyée <i class='bx bxs-send bx-xs'></i></h4>
+            <div class="overflow-scroll flex flex-row">
+                <div class="flex flex-row px-5">
+                    <div v-for="i in sentProposition" :key="i" class="bg-c-env m-5 rounded-md w-64 py-5">
+                        <h4 class="font-semibold">{{ i.type }}</h4>
+                        <p class="text-xs">{{ i.createdAt }}</p>
+                        <div>
+                            <button @click="openCard(i)" class="desktop-btn duration-200 capizalize text-c-light bg-blue-light py-2 px-5 rounded-full my-2">ouvrir</button>
+                        </div>
                     </div>
                 </div>
+                
             </div>
 
-            <div class="overflow-scroll">
-                <h4 class="font-semibold text-base">en cours de retour client</h4>
-                <div v-for="i in inProgress" :key="i" class="bg-c-yellow my-5 rounded-md w-3/4 m-auto">
-                    <h4 class="font-semibold">{{ i.type }}</h4>
-                    <p class="">{{ i.createdAt }}</p>
-                    <div class="">
-                        <button @click="openCard(i)" class="desktop-btn duration-200 capizalize text-c-light bg-blue-light py-2 px-5 rounded-full my-2">ouvrir</button>
+            <h4 class="font-semibold text-base my-2 capitalize text-c-light">en cours de retour client <i class='bx bx-loader-circle bx-xs'></i></h4>
+            <div class="overflow-scroll flex flex-row">
+                <div class="flex flex-row px-5">
+                    <div v-for="i in inProgress" :key="i" class="bg-c-yellow m-5 rounded-md w-64 py-5">
+                        <h4 class="font-semibold">{{ i.type }}</h4>
+                        <p class="text-xs">{{ i.createdAt }}</p>
+                        <div class="">
+                            <button @click="openCard(i)" class="desktop-btn duration-200 capizalize text-c-light bg-blue-light py-2 px-5 rounded-full my-2">ouvrir</button>
+                        </div>
                     </div>
                 </div>
+                
             </div>
 
-            <div class="overflow-scroll">
-                <h4 class="font-semibold text-base">proposition signée</h4>
-                <div v-for="i in signedProposition" :key="i" class="bg-c-sign my-5 rounded-md w-3/4 m-auto">
-                    <h4 class="font-semibold">{{ i.type }}</h4>
-                    <p class="">{{ i.createdAt }}</p>
-                    <div class="">
-                        <button @click="openCard(i)" class="desktop-btn duration-200 capizalize text-c-light bg-blue-light py-2 px-5 rounded-full my-2">ouvrir</button>
+            <h4 class="font-semibold text-base my-2 capitalize text-c-light">proposition signée <i class='bx bx-edit bx-xs'></i></h4>
+            <div class="overflow-scroll flex flex-row">
+                <div class="flex flex-row px-5">
+                    <div v-for="i in signedProposition" :key="i" class="bg-c-sign m-5 rounded-md w-64 py-5">
+                        <h4 class="font-semibold">{{ i.type }}</h4>
+                        <p class="text-xs">{{ i.createdAt }}</p>
+                        <div class="">
+                            <button @click="openCard(i)" class="desktop-btn duration-200 capizalize text-c-light bg-blue-light py-2 px-5 rounded-full my-2">ouvrir</button>
+                        </div>
                     </div>
                 </div>
+                
             </div>
 
-            <div class="overflow-scroll">
-                <h4 class="font-semibold text-base">complété</h4>
-                <div v-for="i in completed" :key="i" class="bg-c-green my-5 rounded-md w-3/4 m-auto">
-                    <h4 class="font-semibold">{{ i.type }}</h4>
-                    <p class="">{{ i.createdAt }}</p>
-                    <div class="">
-                        <button @click="openCard(i)" class="desktop-btn duration-200 capizalize text-c-light bg-blue-light py-2 px-5 rounded-full my-2">ouvrir</button>
+            <h4 class="font-semibold text-base my-2 capitalize text-c-light">complété <i class='bx bxs-check-shield bx-xs'></i></h4>
+            <div class="overflow-scroll flex flex-row">
+                <div class="flex flex-row px-5">
+                    <div v-for="i in completed" :key="i" class="bg-c-green m-5 rounded-md w-64 py-5">
+                        <h4 class="font-semibold">{{ i.type }}</h4>
+                        <p class="text-xs">{{ i.createdAt }}</p>
+                        <div class="">
+                            <button @click="openCard(i)" class="desktop-btn duration-200 capizalize text-c-light bg-blue-light py-2 px-5 rounded-full my-2">ouvrir</button>
+                        </div>
                     </div>
                 </div>
+                
             </div>
     </main> 
 </template>
