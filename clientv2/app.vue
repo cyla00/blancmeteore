@@ -53,7 +53,7 @@ i {
 }
 
 ::-webkit-scrollbar {
-  width: 7px;
+  width: 0;
   height: 7px;
 }
 

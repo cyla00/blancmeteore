@@ -5,6 +5,10 @@ import ContinueVitr from '@/components/userDash/ContinueVitr.vue'
 import ContinueEcom from '@/components/userDash/ContinueEcom.vue'
 import ContinueMesure from '@/components/userDash/ContinueMesure.vue'
 
+definePageMeta({
+  middleware: ["user"]
+})
+
 </script>
 
 <template>

@@ -1,5 +1,7 @@
 <script setup lang="ts">
-
+definePageMeta({
+  middleware: ["creator"]
+})
 </script>
 
 <template>

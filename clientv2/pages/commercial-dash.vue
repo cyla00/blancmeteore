@@ -3,6 +3,10 @@ import axios from 'axios'
 import Popup from '@/components/Popup.vue'
 import More from '@/components/commDash/More.vue'
 
+definePageMeta({
+  middleware: ["commercial"]
+})
+
 const toContact = ref<Array<object>>([{}])
 const signedProposition = ref<Array<object>>([{}])
 const sentProposition = ref<Array<object>>([{}])

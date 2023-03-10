@@ -140,7 +140,9 @@ const setCompleted = async() => {
 
 <template>
     <Transition>
-    <div class="modal fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-3/4 w-3/4 bg-c-light text-c-dark py-10 px-2 overflow-scroll z-50 text-xs" v-if="openModal">
+    <div 
+        class="modal fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-3/4 w-3/4 bg-c-light text-c-dark py-10 px-2 overflow-scroll z-50 text-xs max-md:w-full max-md:h-full" 
+        v-if="openModal">
         <Popup v-model:Show="show" v-model:ErrMsg="errMsg" v-model:SuccMsg="succMsg" />
         
         
@@ -181,15 +183,15 @@ const setCompleted = async() => {
             <p class="font-semibold" :class="{'no-graph': !toRaw(order_id)?.newIdGraphComplete, 'yes-graph': toRaw(order_id)?.newIdGraphComplete }"><span class="title">identite complete</span></p>
             
             <h3 class="my-2 font-bold">creation sites</h3>
-            <p class="text-base font-bold"><span class="font-normal">Déjà un site: </span> {{ toRaw(order_id)?.questDejaSite }}</p>
-            <p class="text-base font-bold"><span class="font-normal">url site existant: </span> {{ toRaw(order_id)?.oldSiteUrl }}</p>
-            <p class="text-base font-bold"><span class="font-normal">Objectif: </span> {{ toRaw(order_id)?.questObjectiveSite }}</p>
-            <p class="text-base font-bold"><span class="font-normal">Déjà une identite graphique:</span> {{ toRaw(order_id)?.questPossedezIdGraph }}</p>
-            <p class="text-base font-bold"><span class="font-normal">Num categories: </span> {{ toRaw(order_id)?.questNumCategories }}</p>
-            <p class="text-base font-bold"><span class="font-normal">Num produits: </span> {{ toRaw(order_id)?.questNumProducts }}</p>
-            <p class="text-base font-bold"><span class="font-normal">Num Pages: </span> {{ toRaw(order_id)?.questNumPages }}</p>
-            <p class="text-base font-bold"><span class="font-normal">Num utilisateurs: </span> {{ toRaw(order_id)?.questNumUsers }}</p>
-            <p class="text-base font-bold"><span class="font-normal">Autres infos: </span> {{ toRaw(order_id)?.newMoreInfo }}</p>
+            <p class="text-base font-bold max-md:text-xs"><span class="font-normal">Déjà un site: </span> {{ toRaw(order_id)?.questDejaSite }}</p>
+            <p class="text-base font-bold max-md:text-xs"><span class="font-normal">url site existant: </span>{{ toRaw(order_id)?.oldSiteUrl }}</p>
+            <p class="text-base font-bold max-md:text-xs"><span class="font-normal">Objectif: </span> {{ toRaw(order_id)?.questObjectiveSite }}</p>
+            <p class="text-base font-bold max-md:text-xs"><span class="font-normal">Déjà une identite graphique:</span> {{ toRaw(order_id)?.questPossedezIdGraph }}</p>
+            <p class="text-base font-bold max-md:text-xs"><span class="font-normal">Num categories: </span> {{ toRaw(order_id)?.questNumCategories }}</p>
+            <p class="text-base font-bold max-md:text-xs"><span class="font-normal">Num produits: </span> {{ toRaw(order_id)?.questNumProducts }}</p>
+            <p class="text-base font-bold max-md:text-xs"><span class="font-normal">Num Pages: </span> {{ toRaw(order_id)?.questNumPages }}</p>
+            <p class="text-base font-bold max-md:text-xs"><span class="font-normal">Num utilisateurs: </span> {{ toRaw(order_id)?.questNumUsers }}</p>
+            <p class="text-base font-bold max-md:text-xs"><span class="font-normal">Autres infos: </span> {{ toRaw(order_id)?.newMoreInfo }}</p>
         </div>
 
         <div class="max-md:flex max-md:flex-col mt-10">
