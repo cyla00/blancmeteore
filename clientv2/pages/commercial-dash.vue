@@ -50,7 +50,7 @@ onMounted( async () => {
     <main class="min-h-screen grid grid-flow-row text-center text-sm text-c-dark">
         <Popup v-model:Show="show" v-model:ErrMsg="errMsg" v-model:SuccMsg="succMsg" />
             <More v-model:openModal="openModal" :order_id="order_id"/>
-            <h4 class="font-semibold text-base my-2 capitalize text-c-light">a contacter</h4>
+            <h4 class="font-semibold text-base my-2 capitalize">a contacter</h4>
             <div class="overflow-scroll flex flex-row">
                 <div class="flex flex-row px-5">
                     <div v-for="i in toContact" :key="i" class="bg-c-cont m-5 rounded-md w-64 py-5">
@@ -64,7 +64,7 @@ onMounted( async () => {
                 
             </div>
 
-            <h4 class="font-semibold text-base my-2 capitalize text-c-light">proposition envoyée <i class='bx bxs-send bx-xs'></i></h4>
+            <h4 class="font-semibold text-base my-2 capitalize">proposition envoyée <i class='bx bxs-send bx-xs'></i></h4>
             <div class="overflow-scroll flex flex-row">
                 <div class="flex flex-row px-5">
                     <div v-for="i in sentProposition" :key="i" class="bg-c-env m-5 rounded-md w-64 py-5">
@@ -78,7 +78,7 @@ onMounted( async () => {
                 
             </div>
 
-            <h4 class="font-semibold text-base my-2 capitalize text-c-light">en cours de retour client <i class='bx bx-loader-circle bx-xs'></i></h4>
+            <h4 class="font-semibold text-base my-2 capitalize">en cours de retour client <i class='bx bx-loader-circle bx-xs'></i></h4>
             <div class="overflow-scroll flex flex-row">
                 <div class="flex flex-row px-5">
                     <div v-for="i in inProgress" :key="i" class="bg-c-yellow m-5 rounded-md w-64 py-5">
@@ -92,7 +92,7 @@ onMounted( async () => {
                 
             </div>
 
-            <h4 class="font-semibold text-base my-2 capitalize text-c-light">proposition signée <i class='bx bx-edit bx-xs'></i></h4>
+            <h4 class="font-semibold text-base my-2 capitalize">proposition signée <i class='bx bx-edit bx-xs'></i></h4>
             <div class="overflow-scroll flex flex-row">
                 <div class="flex flex-row px-5">
                     <div v-for="i in signedProposition" :key="i" class="bg-c-sign m-5 rounded-md w-64 py-5">
@@ -106,7 +106,7 @@ onMounted( async () => {
                 
             </div>
 
-            <h4 class="font-semibold text-base my-2 capitalize text-c-light">complété <i class='bx bxs-check-shield bx-xs'></i></h4>
+            <h4 class="font-semibold text-base my-2 capitalize">complété <i class='bx bxs-check-shield bx-xs'></i></h4>
             <div class="overflow-scroll flex flex-row">
                 <div class="flex flex-row px-5">
                     <div v-for="i in completed" :key="i" class="bg-c-green m-5 rounded-md w-64 py-5">

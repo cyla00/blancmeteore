@@ -31,8 +31,8 @@ const showPresence = ref<boolean>(false)
         <LancementForm v-model:open="showLancement" />
         <PresenceForm v-model:open="showPresence" />
 
-        <div class="m_auto text-c-light">   
-                <h2 class="font-bold uppercase max-sm:text-3xl text-4xl">accompagnement Digital</h2>
+        <div class="m_auto text-c-dark">   
+                <h2 class="font-bold uppercase max-sm:text-3xl text-4xl">réseaux sociaux</h2>
                 <h3 class="text-2xl font-semibold max-lg:text-xl max-sm:text-sm capitalize">laissez-nous vous aider à améliorer votre présence sur les réseaux</h3>
             </div>
             
@@ -42,7 +42,7 @@ const showPresence = ref<boolean>(false)
                     <img class="w-48 m-auto" src="/assets/acc.png" alt="service icon">
                     <p class="m-auto">courte description service</p>
                     <div class="m-auto">
-                        <button class="duration-200 desktop-btn capitalize bg-blue-light py-2 px-5 rounded-full text-c-light" @click="showLancement = true">choisir</button>
+                        <button class="duration-200 desktop-btn capitalize bg-gradient-to-bl from-blue-dark to-blue-light py-2 px-5 rounded-full text-c-light" @click="showLancement = true">choisir</button>
                     </div>
                 </div>
 
@@ -51,7 +51,7 @@ const showPresence = ref<boolean>(false)
                     <img class="w-48 m-auto" src="/assets/graph.png" alt="service icon">
                     <p class="m-auto">courte description service</p>
                     <div class="m-auto">
-                        <button class="duration-200 desktop-btn capitalize bg-blue-light py-2 px-5 rounded-full text-c-light" @click="showPresence = true">choisir</button>
+                        <button class="duration-200 desktop-btn capitalize bg-gradient-to-bl from-blue-dark to-blue-light py-2 px-5 rounded-full text-c-light" @click="showPresence = true">choisir</button>
                     </div>
                 </div>
 
@@ -60,7 +60,7 @@ const showPresence = ref<boolean>(false)
                     <img class="w-48 m-auto" src="/assets/sites.png" alt="service icon">
                     <p class="m-auto">courte description service</p>
                     <div class="m-auto">
-                        <button class="duration-200 desktop-btn capitalize bg-blue-light py-2 px-5 rounded-full text-c-light" @click="showDecollange = true">choisir</button>
+                        <button class="duration-200 desktop-btn capitalize bg-gradient-to-bl from-blue-dark to-blue-light py-2 px-5 rounded-full text-c-light" @click="showDecollange = true">choisir</button>
                     </div>
                 </div>
 
@@ -69,7 +69,7 @@ const showPresence = ref<boolean>(false)
                     <img class="w-48 m-auto" src="/assets/sites.png" alt="service icon">
                     <p class="m-auto">courte description service</p>
                     <div class="m-auto">
-                        <button class="duration-200 desktop-btn capitalize bg-blue-light py-2 px-5 rounded-full text-c-light" @click="showAudit = true">choisir</button>
+                        <button class="duration-200 desktop-btn capitalize bg-gradient-to-bl from-blue-dark to-blue-light py-2 px-5 rounded-full text-c-light" @click="showAudit = true">choisir</button>
                     </div>
                 </div>
         </div>
@@ -77,5 +77,7 @@ const showPresence = ref<boolean>(false)
 </template>
 
 <style scoped>
-
+.card{
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
 </style>

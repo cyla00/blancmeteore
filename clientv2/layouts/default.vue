@@ -87,15 +87,15 @@ onMounted(async () => {
                 </div>
 
                 <div class="m-auto">
-                    <NuxtLink class="duration-200 desktop-btn mx-5 capitalize" to="/accompagnement-digital/">accompagnement digital</NuxtLink>
-                    <NuxtLink class="duration-200 desktop-btn mx-5 capitalize" to="/graphisme/">graphisme</NuxtLink>
-                    <NuxtLink class="duration-200 desktop-btn mx-5 capitalize" to="/creation-sites/">creation sites</NuxtLink>
+                    <NuxtLink class="duration-200 desktop-btn mx-5 capitalize" to="/accompagnement-digital/">réseaux sociaux</NuxtLink>
+                    <NuxtLink class="duration-200 desktop-btn mx-5 capitalize" to="/graphisme/">Graphisme</NuxtLink>
+                    <NuxtLink class="duration-200 desktop-btn mx-5 capitalize" to="/creation-sites/">Creations web</NuxtLink>
                 </div>
                     
                 <div class="m-auto">
-                    <NuxtLink class="duration-200 desktop-btn capitalize bg-blue-light py-2 px-5 rounded-full text-c-light mx-2" to="/connection/" v-if="!isLogged">connection <i class='bx bxs-right-arrow-alt'></i></NuxtLink>
-                    <NuxtLink class="duration-200 desktop-btn capitalize bg-blue-light py-2 px-5 rounded-full text-c-light mx-2" to="/accounts/" v-if="isLogged">espace <i class='bx bxs-user bx-xs'></i></NuxtLink>
-                    <button class="duration-200 desktop-btn capitalize bg-c-red text-c-light rounded-full p-2 mx-2 align-middle" @click="logout" v-if="isLogged">déconnection <i class='bx bx-log-out-circle bx-xs'></i></button>
+                    <NuxtLink class="duration-200 desktop-btn capitalize bg-gradient-to-bl from-blue-dark to-blue-light py-2 px-5 rounded-full text-c-light mx-2" to="/connection/" v-if="!isLogged">connexion <i class='bx bxs-right-arrow-alt'></i></NuxtLink>
+                    <NuxtLink class="duration-200 desktop-btn capitalize bg-gradient-to-bl from-blue-dark to-blue-light py-2 px-5 rounded-full text-c-light mx-2" to="/accounts/" v-if="isLogged">espace <i class='bx bxs-user bx-xs'></i></NuxtLink>
+                    <button class="duration-200 desktop-btn capitalize bg-c-red text-c-light rounded-full p-2 mx-2 align-middle" @click="logout" v-if="isLogged">déconnexion <i class='bx bx-log-out-circle bx-xs'></i></button>
                 </div>
             </nav>
 
@@ -115,15 +115,15 @@ onMounted(async () => {
                             </div>
 
                             <div class="flex flex-col text-center mt-10 text-c-light">
-                                <NuxtLink class="w-80 m-auto py-2 px-5 my-2 rounded-full bg-blue-light duration-200 mobile-btn capitalize" to="/connection/" v-if="!isLogged">connection <i class='bx bxs-right-arrow-alt bx-sm'></i></NuxtLink>
-                                <NuxtLink class="w-80 m-auto py-2 px-5 my-2 rounded-full bg-blue-light duration-200 mobile-btn capitalize" to="/accounts/" v-if="isLogged">espace <i class='bx bxs-user bx-sm'></i></NuxtLink>
-                                <button class="w-80 m-auto py-2 px-5 my-2 bg-c-red rounded-full duration-200 mobile-btn capitalize" @click="logout" v-if="isLogged">déconnection <i class='bx bx-log-out-circle bx-sm'></i></button>
+                                <NuxtLink class="w-80 m-auto py-2 px-5 my-2 rounded-full bg-gradient-to-bl from-blue-dark to-blue-light duration-200 mobile-btn capitalize" to="/connection/" v-if="!isLogged">connexion <i class='bx bxs-right-arrow-alt bx-sm'></i></NuxtLink>
+                                <NuxtLink class="w-80 m-auto py-2 px-5 my-2 rounded-full bg-gradient-to-bl from-blue-dark to-blue-light duration-200 mobile-btn capitalize" to="/accounts/" v-if="isLogged">espace <i class='bx bxs-user bx-sm'></i></NuxtLink>
+                                <button class="w-80 m-auto py-2 px-5 my-2 bg-c-red rounded-full duration-200 mobile-btn capitalize" @click="logout" v-if="isLogged">déconnexion <i class='bx bx-log-out-circle bx-sm'></i></button>
                             </div>
 
                             <div class="flex flex-col text-start">
-                                <NuxtLink class="w-80 m-auto py-2 px-5 my-2 duration-200 mobile-btn capitalize" to="/accompagnement-digital/"><i class='bx bxs-network-chart bx-sm'></i> accompagnement digital</NuxtLink>
+                                <NuxtLink class="w-80 m-auto py-2 px-5 my-2 duration-200 mobile-btn capitalize" to="/accompagnement-digital/"><i class='bx bxs-network-chart bx-sm'></i> réseaux sociaux</NuxtLink>
                                 <NuxtLink class="w-80 m-auto py-2 px-5 my-2 duration-200 mobile-btn capitalize" to="/graphisme/"><i class='bx bxs-palette bx-sm'></i> graphisme</NuxtLink>
-                                <NuxtLink class="w-80 m-auto py-2 px-5 my-2 duration-200 mobile-btn capitalize" to="/creation-sites/"><i class='bx bx-code-block bx-sm'></i> creation sites</NuxtLink>
+                                <NuxtLink class="w-80 m-auto py-2 px-5 my-2 duration-200 mobile-btn capitalize" to="/creation-sites/"><i class='bx bx-code-block bx-sm'></i> creations web</NuxtLink>
                             </div>
                         </div>
                     </div>

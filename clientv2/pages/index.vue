@@ -40,57 +40,53 @@ watch(isVisible, (event) => {
 <template>
     <main class="">
         <section class="">
-            <div class="grid grid-flow-col bg-opaque-light mx-5 my-5 backdrop-blur-md rounded-3xl p-10 h-vh85 text-c-dark max-lg:grid-flow-row">
-
-                <div class="m-auto max-sm:text-center">
-                    <p class="capitalize text-sm font-bold text-blue-dark max-lg:text-xs">la communication accessible a tous</p>
-                    <h1 class="uppercase text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-bl from-blue-dark to-blue-light max-lg:text-4xl max-sm:text-3xl">blanc meteore</h1>
-                    <h2 class="capitalize text-2xl font-semibold max-lg:text-xl max-sm:text-sm">agence de communication, design <br> & developpement innovante.</h2>
-                </div>
-
-                <div class="m-auto">
-                    <img src="/assets/ph.png" alt="">
-                </div>
+            <div class="mx-5 my-5 rounded-3xl h-vh85 soft-back overflow-hidden">
+                <video autoplay loop muted>
+                <source src="/assets/video.mp4" type="video/mp4">
+            </video>
             </div>
         </section>
 
         <section class="text-center mt-20 pb-20">
-            <div class="m_auto text-c-light">   
+            <div class="m_auto text-c-dark">   
                 <h2 class="font-bold uppercase max-sm:text-3xl text-4xl">nos solutions</h2>
                 <h3 class="text-2xl font-semibold max-lg:text-xl max-sm:text-sm capitalize">découvrez ce que nous faisons</h3>
             </div>
             
             <div class="flex flex-row mt-20 justify-center max-lg:grid max-lg:grid-cols-2 max-sm:grid-cols-1">
-                <div class="max-lg:m-auto max-lg:mt-5 w-card-w h-card-h card duration-200 bg-opaque-light py-10 px-5 grid grid-flow-row rounded-xl mx-5 border-2 border-transparent hover:border-blue-dark">
-                    <h4 class="capitalize m-auto bg-clip-text text-transparent bg-gradient-to-bl from-blue-dark to-blue-light font-bold">accompagnement digital</h4>
-                    <img class="w-48 m-auto" src="/assets/acc.png" alt="service icon">
+                <div class="max-lg:m-auto max-lg:mt-5 w-card-w h-card-h card duration-200 bg-opaque-light py-10 px-5 grid grid-flow-row rounded-xl mx-10 border-2 border-transparent hover:border-blue-dark">
+                    <h4 class="capitalize m-auto bg-clip-text text-transparent bg-gradient-to-bl from-blue-dark to-blue-light font-bold">réseaux sociaux</h4>
+                    <img class="w-48 m-auto" src="/assets/test.png" alt="service icon">
                     <p class="m-auto">courte description categorie</p>
                     <div class="m-auto">
-                        <NuxtLink class="duration-200 desktop-btn capitalize bg-blue-light py-2 px-5 rounded-full text-c-light" to="/accompagnement-digital/">decouvrir</NuxtLink>
+                        <NuxtLink class="duration-200 desktop-btn capitalize bg-gradient-to-bl from-blue-dark to-blue-light py-2 px-5 rounded-full text-c-light" to="/accompagnement-digital/">decouvrir</NuxtLink>
                     </div>
                 </div>
 
-                <div class="max-lg:m-auto max-lg:mt-5 w-card-w h-card-h card duration-200 bg-opaque-light py-10 px-5 grid grid-flow-row rounded-xl mx-5 border-2 border-transparent hover:border-blue-dark">
+                <div class="max-lg:m-auto max-lg:mt-5 w-card-w h-card-h card duration-200 bg-opaque-light py-10 px-5 grid grid-flow-row rounded-xl mx-10 border-2 border-transparent hover:border-blue-dark">
                     <h4 class="capitalize m-auto bg-clip-text text-transparent bg-gradient-to-bl from-blue-dark to-blue-light font-bold">graphisme</h4>
-                    <img class="w-48 m-auto" src="/assets/graph.png" alt="service icon">
+                    <img class="w-48 m-auto" src="/assets/test.png" alt="service icon">
                     <p class="m-auto">courte description categorie</p>
                     <div class="m-auto">
-                        <NuxtLink class="duration-200 desktop-btn capitalize bg-blue-light py-2 px-5 rounded-full text-c-light" to="/graphisme/">decouvrir</NuxtLink>
+                        <NuxtLink class="duration-200 desktop-btn capitalize bg-gradient-to-bl from-blue-dark to-blue-light py-2 px-5 rounded-full text-c-light" to="/graphisme/">decouvrir</NuxtLink>
                     </div>
                 </div>
 
-                <div class="max-lg:m-auto max-lg:mt-5 w-card-w h-card-h card duration-200 bg-opaque-light py-10 px-5 grid grid-flow-row rounded-xl mx-5 border-2 border-transparent hover:border-blue-dark">
+                <div class="max-lg:m-auto max-lg:mt-5 w-card-w h-card-h card duration-200 bg-opaque-light py-10 px-5 grid grid-flow-row rounded-xl mx-10 border-2 border-transparent hover:border-blue-dark">
                     <h4 class="capitalize m-auto bg-clip-text text-transparent bg-gradient-to-bl from-blue-dark to-blue-light font-bold">developpement sites</h4>
-                    <img class="w-48 m-auto" src="/assets/sites.png" alt="service icon">
+                    <img class="w-48 m-auto" src="/assets/test.png" alt="service icon">
                     <p class="m-auto">courte description categorie</p>
                     <div class="m-auto">
-                        <NuxtLink class="duration-200 desktop-btn capitalize bg-blue-light py-2 px-5 rounded-full text-c-light" to="/creation-sites/">decouvrir</NuxtLink>
+                        <NuxtLink class="duration-200 desktop-btn capitalize bg-gradient-to-bl from-blue-dark to-blue-light py-2 px-5 rounded-full text-c-light" to="/creation-sites/">decouvrir</NuxtLink>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="bg-c-light py-20">
+        <section class="bg-c-light py-20 text-center">
+            <div class="m_auto text-c-dark pb-20">   
+                <h3 class="text-2xl font-semibold max-lg:text-xl max-sm:text-sm capitalize">innover ensemble</h3>
+            </div>
             <div class="grid grid-cols-5 gap-y-7 justify-center max-md:grid-cols-3 max-md:gap-y-10">
                 <div class="m-auto mx-5">
                     <img class="m-auto w-24" src="/assets/logo1.png" alt="" srcset="">
@@ -185,6 +181,20 @@ watch(isVisible, (event) => {
 
 <style scoped>
 .card{
-    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.soft-back{
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+video {
+  width: 80%;
+  height: 80%;
+  object-fit: cover;
+  margin: auto;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%)
 }
 </style>

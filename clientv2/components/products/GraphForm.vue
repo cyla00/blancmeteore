@@ -131,7 +131,7 @@ const submit = async () => {
 
 <template>
     <Transition>
-        <div v-if="open" class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-c-light h-full w-full z-40 p-10 text-c-dark">
+        <div v-if="open" class="popup fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-c-light h-4/5 w-4/5 z-40 p-10 text-c-dark rounded-xl">
             <div class="flex">
                 <button 
                     @click="closeForm" 
@@ -250,5 +250,9 @@ const submit = async () => {
 .v-enter-from,
 .v-leave-to {
   opacity: 0;
+}
+
+.popup{
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 </style>

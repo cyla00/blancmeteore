@@ -208,6 +208,10 @@ const setCompleted = async() => {
 
 
 <style scoped>
+.modal{
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
 p{ 
     margin: 0;
     padding: 5px 10px;

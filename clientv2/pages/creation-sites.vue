@@ -25,7 +25,7 @@ const openMesure = ref<boolean>(false)
         <VitrineForm v-model:open="openVitr"/>
         <EcomForm v-model:open="openEcom"/>
         <MesureForm v-model:open="openMesure"/>
-        <div class="m_auto text-c-light">   
+        <div class="m_auto text-c-dark">   
                 <h2 class="font-bold uppercase max-sm:text-3xl text-4xl">developpement de sites</h2>
                 <h3 class="text-2xl font-semibold max-lg:text-xl max-sm:text-sm capitalize">sites et outils pour votre activité en ligne</h3>
             </div>
@@ -36,7 +36,7 @@ const openMesure = ref<boolean>(false)
                     <img class="w-48 m-auto" src="/assets/acc.png" alt="service icon">
                     <p class="m-auto">courte description service</p>
                     <div class="m-auto">
-                        <button class="duration-200 desktop-btn capitalize bg-blue-light py-2 px-5 rounded-full text-c-light" @click="openVitr = true">choisir</button>
+                        <button class="duration-200 desktop-btn capitalize bg-gradient-to-bl from-blue-dark to-blue-light py-2 px-5 rounded-full text-c-light" @click="openVitr = true">choisir</button>
                     </div>
                 </div>
 
@@ -45,7 +45,7 @@ const openMesure = ref<boolean>(false)
                     <img class="w-48 m-auto" src="/assets/graph.png" alt="service icon">
                     <p class="m-auto">courte description service</p>
                     <div class="m-auto">
-                        <button class="duration-200 desktop-btn capitalize bg-blue-light py-2 px-5 rounded-full text-c-light" @click="openEcom = true">choisir</button>
+                        <button class="duration-200 desktop-btn capitalize bg-gradient-to-bl from-blue-dark to-blue-light py-2 px-5 rounded-full text-c-light" @click="openEcom = true">choisir</button>
                     </div>
                 </div>
 
@@ -54,7 +54,7 @@ const openMesure = ref<boolean>(false)
                     <img class="w-48 m-auto" src="/assets/sites.png" alt="service icon">
                     <p class="m-auto">courte description service</p>
                     <div class="m-auto">
-                        <button class="duration-200 desktop-btn capitalize bg-blue-light py-2 px-5 rounded-full text-c-light" @click="openMesure = true">choisir</button>
+                        <button class="duration-200 desktop-btn capitalize bg-gradient-to-bl from-blue-dark to-blue-light py-2 px-5 rounded-full text-c-light" @click="openMesure = true">choisir</button>
                     </div>
                 </div>
         </div> 
@@ -62,5 +62,7 @@ const openMesure = ref<boolean>(false)
 </template>
 
 <style scoped>
-
+.card{
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
 </style>
