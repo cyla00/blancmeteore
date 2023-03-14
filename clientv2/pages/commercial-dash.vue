@@ -47,9 +47,9 @@ onMounted( async () => {
 </script>
 
 <template>
-    <main class="min-h-screen grid grid-flow-row text-center text-sm text-c-dark">
+    <main class="min-h-screen text-center text-sm text-c-dark">
         <Popup v-model:Show="show" v-model:ErrMsg="errMsg" v-model:SuccMsg="succMsg" />
-            <More v-model:openModal="openModal" :order_id="order_id"/>
+        <More v-model:openModal="openModal" :order_id="order_id"/>
             <h4 class="font-semibold text-base my-2 capitalize">a contacter</h4>
             <div class="overflow-scroll flex flex-row">
                 <div class="flex flex-row px-5">
@@ -61,7 +61,6 @@ onMounted( async () => {
                         </div>
                     </div>
                 </div>
-                
             </div>
 
             <h4 class="font-semibold text-base my-2 capitalize">proposition envoyée <i class='bx bxs-send bx-xs'></i></h4>

@@ -62,7 +62,6 @@ import { downloadCreations } from './users/downloadCreations.ts'
 
 const app = new Application()
 app.use(oakCors()) // enables cors
-
 //static files
 const root = './media'
 app.use(async (ctx, next) => {

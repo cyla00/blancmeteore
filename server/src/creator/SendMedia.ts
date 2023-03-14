@@ -6,14 +6,14 @@ import db from '../database/connection.ts'
 import { IdGraphicOrderSchema, UserSchema } from '../database/interfaces.ts'
 import { jwtDecode } from '../auth/jwtDecode.ts'
 import prod_json from '../products/prod_config.json' assert { type: "json" }
-    
+
 export const sendMedia = new Router()
 sendMedia.post('/api/send-media', async (ctx) => {
-    
+
     const token = ctx.request.headers.get('Authorization')
     const users = db.collection<UserSchema>("users")
     const body:any = await ctx.request.body()
-
+    
     if(jwtDecode(token).role !== 'creator'){
         ctx.response.status = Status.BadRequest
         return ctx.response.body = {
@@ -39,12 +39,13 @@ sendMedia.post('/api/send-media', async (ctx) => {
             }
         }
 
-        if(bodyVal.files[0].contentType !== 'application/zip'){
-            ctx.response.status = Status.BadRequest
-            return ctx.response.body = {
-                ErrMsg: 'Erreur'
-            }
-        }
+        // if(bodyVal.files[0].contentType !== 'application/zip'){
+        //     ctx.response.status = Status.BadRequest
+        //     return ctx.response.body = {
+        //         ErrMsg: 'Erreur'
+        //     }
+        // }
+        
 
         await Deno.rename(bodyVal.files[0].filename, `./media/user_${bodyVal.fields.client_id}/creations/creations.zip`)
         
@@ -53,6 +54,7 @@ sendMedia.post('/api/send-media', async (ctx) => {
             SuccMsg: 'Téléchargé avec succès'
         }
     }catch(_e){
+        console.log(_e)
         ctx.response.status = Status.InternalServerError
         return ctx.response.body = {
             ErrMsg: 'Erreur'
