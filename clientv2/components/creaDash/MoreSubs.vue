@@ -28,7 +28,7 @@ const auth = {
 watch(prop, async (event) => {
     if(event.openModal){
         const body = {
-            clientId: toRaw(event.order_id)?.clientId
+            clientId: toRaw(event.order_id)?.customerId
         }
 
         await axios.post('http://localhost:3000/api/get-user', body, auth).then((res) => {
@@ -57,6 +57,39 @@ watch(prop, async (event) => {
     <Transition>
     <div v-if="openModal" class="modal fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-3/4 w-3/4 bg-c-light text-c-dark py-10 px-2 overflow-scroll z-50 text-xs max-md:w-full max-md:h-full">
         <Popup v-model:Show="show" v-model:ErrMsg="errMsg" v-model:SuccMsg="succMsg" />
+
+        <div class="text-start">
+            <h3 class="text-center font-bold capitalize text-xl">{{ toRaw(order_id)?.type }}</h3>
+            <p class="">{{ toRaw(order_id)?.createdAt }}</p>
+            <table class="my-10 w-full">
+                <tr class="grid grid-flow-col">
+                    <th class="text-start">Prenom</th>
+                    <th class="text-start">Nom</th>
+                    <th class="text-start">Email</th>
+                    <th class="text-start">Nom Societe</th>
+                    <th class="text-start">siret</th>
+                    <th class="text-start">N Tel</th>
+                </tr>
+
+                <tr class="grid grid-flow-col">
+                    <td>{{ firstName }}</td>
+                    <td>{{ lastName }}</td>
+                    <td>{{ email }}</td>
+                    <td>{{ companyName }}</td>
+                    <td>{{ siret }}</td>
+                    <td>{{ tel }}</td>
+                </tr>
+            </table>
+            <p class=""><span class="font-semibold">Secteur d'activite: </span> {{ toRaw(order_id)?.questSecteurActivite }}</p>
+            <p class=""><span class="font-semibold">type abbonement: </span> {{ toRaw(order_id)?.type }}</p>
+
+            <p class=""><span class="font-semibold">identite graphique: </span> {{ toRaw(order_id)?.questDejaIdGraph }}</p>
+            <p class=""><span class="font-semibold">objectif: </span> {{ toRaw(order_id)?.questObjectiveCreation }}</p>
+            <p class=""><span class="font-semibold">compte Facebook: </span> {{ toRaw(order_id)?.linkFacebook }}</p>
+            <p class=""><span class="font-semibold">compte Instagram: </span> {{ toRaw(order_id)?.linkInstagram }}</p>
+            <p class=""><span class="font-semibold">compte Linkedin: </span> {{ toRaw(order_id)?.linkLinkedin }}</p>
+            <p class=""><span class="font-semibold">compte tiktok: </span> {{ toRaw(order_id)?.linkTiktok }}</p>
+        </div>
 
         <div class="max-md:flex max-md:flex-col mt-10">
             <button @click="emit('update:openModal', false)" class="desktop-btn duration-200 capizalize text-c-light bg-c-red py-2 px-5 rounded-full max-md:my-2"><i class='bx bx-x bx-xs'></i> Retour</button>

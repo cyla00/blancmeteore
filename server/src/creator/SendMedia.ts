@@ -3,9 +3,8 @@
 
 import { Router, Status } from '../deps.ts'
 import db from '../database/connection.ts'
-import { IdGraphicOrderSchema, UserSchema } from '../database/interfaces.ts'
+import { UserSchema } from '../database/interfaces.ts'
 import { jwtDecode } from '../auth/jwtDecode.ts'
-import prod_json from '../products/prod_config.json' assert { type: "json" }
 
 export const sendMedia = new Router()
 sendMedia.post('/api/send-media', async (ctx) => {

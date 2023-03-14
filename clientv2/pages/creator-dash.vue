@@ -39,7 +39,9 @@ onMounted( async () => {
 
     await axios.post('http://localhost:3000/api/get-creator-orders', {}, auth).then(async (res) => {
         orders.value = res.data.orders
-        subs.value = res.data.subs
+        subs.value = res.data.subs    
+        console.log(subs.value);
+        
     }).catch((e) => {
         show.value = true
         errMsg.value = e.response.data.ErrMsg
@@ -83,5 +85,13 @@ onMounted( async () => {
 </template>
 
 <style scoped>
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.3s ease;
+}
 
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
 </style>
